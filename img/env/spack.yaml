@@ -1,0 +1,27 @@
+spack:
+  view: /opt/apps/rcc/view
+  config:
+    install_tree: /opt/apps/rcc/software
+
+  specs:
+    - matrix:
+      - [openmpi]
+      - ['%gcc@11.3.0']
+
+  packages:
+    cuda:
+      buildable: false
+      externals:
+      - spec: cuda@11.4
+        prefix: /usr/local/cuda
+    openmpi:
+      buildable: true
+      version: 
+      - 4.1.2
+      variants: +cxx +cxx_exceptions +legacylaunchers +memchecker +pmi +static+vt +wrapper-rpath fabrics=auto schedulers=slurm
+    slurm:
+      buildable: false
+      version: [22-5]
+      externals:
+      - spec: slurm@22-5
+        prefix: /usr/local

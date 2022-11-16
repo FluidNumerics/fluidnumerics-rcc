@@ -1,0 +1,8 @@
+public/
+*.tfstate
+.terraform
+.terraform.lock.hcl
+*.tfplan
+*.tfstate.backup
+*.zip
+tfplan

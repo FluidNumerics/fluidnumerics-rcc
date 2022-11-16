@@ -1,0 +1,21 @@
+=============================================================================  
+  Fluid Numerics RCC
+
+=============================================================================  
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+
+  Welcome to the Research Computing Cloud!
+
+  To list available compute nodes, run `sinfo`
+
+  You can list available software by running `module avail`
+
+  You can obtain support by writing to rcc-support@fluidnumerics.cloud
+  or by visiting Fluid Numerics' support portal at
+
+ https://fluidnumerics.atlassian.net/servicedesk/customer/portal/9/group/56
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
+-----------------------------------------------------------------------------
+
+=============================================================================  
