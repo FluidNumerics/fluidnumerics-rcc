@@ -1,0 +1,10 @@
+
+- name: RCC Packages
+  hosts: all
+  become: yes
+  become_method: sudo
+  become_user: root
+
+  tasks:
+    - name: Install ROCm
+      ansible.builtin.script: scripts/rocm.sh

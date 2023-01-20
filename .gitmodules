@@ -1,0 +1,3 @@
+[submodule "slurm-gcp"]
+	path = slurm-gcp
+	url = https://github.com/fluidnumerics/slurm-gcp

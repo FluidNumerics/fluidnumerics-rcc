@@ -16,16 +16,15 @@ nav:
   - Getting Started: start/README.md
   - Running Jobs: 
     - Running Jobs: jobs/README.md
-    - Environment variables: jobs/env.md
     - Interactive Jobs: jobs/interactive_jobs.md
     - Batch Jobs: jobs/batch_jobs.md
+    - Environment variables: jobs/env.md
     - GPU Accelerated Applications: jobs/gpu_applications.md
     - Deploy Containerized Applications: jobs/run_a_singularity_container.md
   - Available Hardware:
-    - Available Hardware: hardware/README.md
-  - Admin:
-    - Deploy with Terraform : admin/DeployWithTerraform.md 
-  - Contact Us: contact-us.md
+    - File Storage: hardware/README.md
+    - Compute Hardware: hardware/README.md
+  - Contact Support: contact-us.md
 
 
 theme: 

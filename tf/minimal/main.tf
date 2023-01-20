@@ -1,21 +1,18 @@
 
-
+/*
 terraform {
   backend "gcs" {
-    bucket  = "fluidnumerics-rcc"
+    bucket  = "fluidnumerics-rcc_cluster"
     prefix  = "rcc-ops"
   }
 }
-
-locals {
-  region = substr(var.zone,0,-2)
-}
+*/
 
 module "fluidnumerics_slurm_cluster" {
   source = "../cluster/"
   project_id = var.project_id
   slurm_cluster_name = var.slurm_cluster_name
-  region = local.region 
+  region = var.region 
   enable_bigquery_load         = false
   enable_cleanup_compute       = true
   enable_cleanup_subscriptions = false
@@ -23,7 +20,7 @@ module "fluidnumerics_slurm_cluster" {
   subnets = [
     {
       subnet_ip     = "10.0.0.0/16"
-      subnet_region = local.region
+      subnet_region = var.region
     },
   ]
   mtu = 0
@@ -68,7 +65,7 @@ module "fluidnumerics_slurm_cluster" {
       enable_vtpm                 = true
     }
     source_image_family  = null
-    source_image_project = "rcc-fluidnumerics"
+    source_image_project = var.project_id
     source_image         = var.image
     tags = []
     instance_template = null
@@ -85,7 +82,7 @@ module "fluidnumerics_slurm_cluster" {
   login_nodes = [
     {
       group_name = "l0"
-      additional_disks         = []
+      additional_disks = []
       can_ip_forward           = false
       disable_smt              = false
       disk_auto_delete         = true
@@ -95,23 +92,23 @@ module "fluidnumerics_slurm_cluster" {
       enable_confidential_vm   = false
       enable_oslogin           = true
       enable_shielded_vm       = false
-      gpu                      = {}
+      gpu = null
       labels                   = {}
-      machine_type             = "n2d-standard-8"
+      machine_type             = var.login_machine_type
       metadata                 = {}
       min_cpu_platform         = null
       on_host_maintenance      = null
       preemptible              = false
       shielded_instance_config = null
       source_image_family  = null
-      source_image_project = var.project
+      source_image_project = var.project_id
       source_image         = var.image
       tags                     = []
       instance_template = null
       access_config = [
         {
           nat_ip = null
-          network_tier = "STANDARD"
+          network_tier = "PREMIUM"
         }
       ]
       network_ips   = []
@@ -119,8 +116,16 @@ module "fluidnumerics_slurm_cluster" {
       static_ips    = []
       region        = null
       zone          = null
-    },
-  ]
+  }
+
+  partitions = var.partitions
+  create_filestore = false
+  filestore = var.filestore
+  create_lustre = var.create_lustre
+  lustre = var.lustre
+
+
+/*
   partitions = [
     {
       enable_job_exclusive    = false
@@ -159,7 +164,7 @@ module "fluidnumerics_slurm_cluster" {
           preemptible              = true
           shielded_instance_config = null
           source_image_family  = null
-          source_image_project = var.project
+          source_image_project = var.project_id
           source_image         = var.image
           tags                     = []
           instance_template = null
@@ -170,19 +175,11 @@ module "fluidnumerics_slurm_cluster" {
           }
         },
       ]
-      region            = local.region
+      region            = var.region
       zone_policy_allow = []
       zone_policy_deny  = []
     },
   ]
-  create_filestore = true
-  filestore = {
-    name = var.filestore_name
-    tier = var.filestore_tier
-    capacity_gb = var.filestore_capacity_gb
-    fs_name = "share1"
-    local_mount = var.filestore_local_mount
-  }
-  create_lustre = var.create_lustre
-  lustre = var.lustre
+*/
+
 }

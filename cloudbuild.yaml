@@ -1,0 +1,33 @@
+
+steps:
+
+- id: Build Packer+Ansible
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build',
+         '-f', 'packer/Dockerfile',
+         '.',
+         '-t','packer:latest']
+
+- id: Initialize packer
+  name: 'packer:latest'
+  args: ["init", "slurm-gcp/packer"]
+
+- id: Validate the build configuration
+  name: 'packer:latest'
+  args: ["validate", "-var-file=packer/fluidnumerics.hcl","slurm-gcp/packer"]
+
+- id: Fix netrc permissions
+  name: 'packer:latest'
+  entrypoint: "/bin/sh"
+  args:
+  - -c
+  - |
+    chmod 600 -R /builder/home/.netrc 
+    ls -al /builder/home/.netrc
+
+- id: Build the VM image
+  name: 'packer:latest'
+  args: ["build","-var-file=packer/fluidnumerics.hcl","slurm-gcp/packer"]
+
+
+timeout: 7200s
