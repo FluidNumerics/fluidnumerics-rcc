@@ -30,4 +30,4 @@ steps:
   args: ["build","-var-file=packer/fluidnumerics.hcl","slurm-gcp/packer"]
 
 
-timeout: 7200s
+timeout: 14400s

@@ -4,18 +4,16 @@
 INSTALL_ROOT="/opt"
 SPACK_VERSION="v0.19.1"
 
-COMPILERS=("gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
+#COMPILERS=("gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
+COMPILERS=("gcc@11.3.0")
 MPI="openmpi@4.1.2"
 
 # Install prerequisites
 yum install -y valgrind valgrind-devel
 yum install -y gcc gcc-c++ gcc-gfortran git make wget patch
 
-pip3 install --upgrade google-cloud-storage google-api-python-client oauth2client google-cloud \
-    	               cython pyyaml parse docopt jsonschema dictdiffer
-
 # Install spack package manager
-git clone https://github.com/spack/spack /opt/apps/spack
+git clone https://github.com/spack/spack ${INSTALL_ROOT}/spack
 cd ${INSTALL_ROOT}/spack 
 git checkout ${SPACK_VERSION}
 
@@ -28,7 +26,7 @@ packages:
   cuda:
     buildable: false
     externals:
-    - spec: cuda@11.4
+    - spec: cuda@11.8
       prefix: /usr/local/cuda
   openmpi:
     buildable: true

@@ -8,3 +8,6 @@
   tasks:
     - name: Install ROCm
       ansible.builtin.script: scripts/rocm.sh
+
+    - name: Install Spack, Compilers, and MPI
+      ansible.builtin.script: scripts/spack.sh
