@@ -100,8 +100,10 @@ locals {
       network_storage           = x.network_storage
       partition_conf            = x.partition_conf
       partition_startup_scripts = x.partition_startup_scripts
+      partition_startup_scripts_timeout = x.partition_startup_scripts_timeout
       partition_name            = x.partition_name
       partition_nodes = [for n in x.partition_nodes : {
+        access_config            = n.access_config
         additional_disks         = n.additional_disks
         bandwidth_tier           = n.bandwidth_tier
         can_ip_forward           = n.can_ip_forward
@@ -188,7 +190,7 @@ module "project_services" {
 ###########
 
 module "slurm_network" {
-  source = "github.com/schedmd/slurm-gcp//terraform/_network"
+  source = "github.com/FluidNumerics/slurm-gcp//terraform/_network"
 
   auto_create_subnetworks = false
   mtu                     = var.mtu
@@ -203,12 +205,69 @@ module "slurm_network" {
   ]
 }
 
+
+// ***************************************** //
+// Cloud SQL - Slurm Database
+
+resource "google_compute_global_address" "private_ip_address" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  provider = google-beta
+  name = "${var.slurm_cluster_name}-private-ip-address"
+  purpose = "VPC_PEERING"
+  address_type = "INTERNAL"
+  prefix_length = 16
+  network = module.slurm_network.network.network_name
+  project = var.project_id
+}
+
+resource "google_service_networking_connection" "private_vpc_connection" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  provider = google-beta
+  network = module.slurm_network.network.network_name
+  service = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.private_ip_address[0].name]
+}
+
+resource "google_sql_database_instance" "slurm_db" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  provider = google-beta
+  name = var.cloudsql_name
+  database_version = "MYSQL_5_6"
+  region = var.region
+  project = var.project_id
+  depends_on = [google_service_networking_connection.private_vpc_connection[0]]
+
+  settings {
+    tier = var.cloudsql_tier
+    ip_configuration {
+      ipv4_enabled  = var.cloudsql_enable_ipv4
+      private_network = module.slurm_network.network.network_self_link
+    }
+  }
+  deletion_protection = false
+}
+
+resource "google_sql_user" "slurm" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  name = "slurm"
+  instance = google_sql_database_instance.slurm_db[0].name
+  password = "changeme"
+}
+
+locals {
+  cloudsql = var.cloudsql_slurmdb ? {"db_name":google_sql_database_instance.slurm_db[0].name, 
+                                     "server_ip":google_sql_database_instance.slurm_db[0].private_ip_address,
+                                     "user": "slurm",
+                                     "password": "changeme"} : null
+}
+
+
 ##################
 # FIREWALL RULES #
 ##################
 
 module "slurm_firewall_rules" {
-  source = "github.com/schedmd/slurm-gcp//terraform/slurm_firewall_rules"
+  source = "github.com/FluidNumerics/slurm-gcp//terraform/slurm_firewall_rules"
 
   slurm_cluster_name = var.slurm_cluster_name
   network_name       = module.slurm_network.network.network_self_link
@@ -225,7 +284,7 @@ module "slurm_firewall_rules" {
 ##########################
 
 module "slurm_sa_iam" {
-  source = "github.com/schedmd/slurm-gcp//terraform/slurm_sa_iam"
+  source = "github.com/FluidNumerics/slurm-gcp//terraform/slurm_sa_iam"
 
   for_each = toset(["controller", "login", "compute"])
 
@@ -325,11 +384,11 @@ module "lustre" {
 #################
 
 module "slurm_cluster" {
-  source = "github.com/schedmd/slurm-gcp//terraform/slurm_cluster?ref=v5.1.0"
+  source = "github.com/FluidNumerics/slurm-gcp//terraform/slurm_cluster"
 
   cgroup_conf_tpl            = var.cgroup_conf_tpl
   cloud_parameters           = local.cloud_parameters
-  cloudsql                   = var.cloudsql
+  cloudsql                   = local.cloudsql
   slurm_cluster_name         = var.slurm_cluster_name
   compute_startup_scripts    = var.compute_startup_scripts
   controller_instance_config = local.controller_instance_config[0]

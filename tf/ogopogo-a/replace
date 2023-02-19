@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+terraform plan -replace module.fluidnumerics_slurm_cluster.module.slurm_cluster.module.slurm_login_instance[\"l0\"].module.slurm_login_instance.google_compute_instance_from_template.slurm_instance[0] \
+               -replace module.fluidnumerics_slurm_cluster.module.slurm_cluster.module.slurm_controller_instance[0].module.slurm_controller_instance.google_compute_instance_from_template.slurm_instance[0] \
+               -out=tfplan
+

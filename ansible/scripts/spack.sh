@@ -4,8 +4,7 @@
 INSTALL_ROOT="/opt"
 SPACK_VERSION="v0.19.1"
 
-#COMPILERS=("gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
-COMPILERS=("gcc@11.3.0")
+COMPILERS=("gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
 MPI="openmpi@4.1.2"
 
 # Install prerequisites
@@ -69,5 +68,9 @@ do
   spack install ${c}
   spack load ${c}
   spack compiler find --scope site
-  spack install --fail-fast $MPI % ${c}
+  if [[ "${c}" == *"intel"* ]]; then
+    spack install --fail-fast $MPI % intel
+  else
+    spack install --fail-fast $MPI % ${c}
+  fi
 done

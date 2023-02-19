@@ -9,7 +9,7 @@ The fluidnumerics-rcc repository contains scripts for building virtual machine i
 * `tf/prod` - Defines the production version of the complete interface for creating the Slurm cluster and supporting resources.
 * `tf/dev` - Defines experimental versions of the Terraform IAC which is used with the Cloud Build pipelines for testing.
 
-## Deploy the Catalog Solution via Terraform
+## Deploy the Catalog Solution via Terrafor
 The catalog solution is configured to deploy a cluster with the following resources
 
 * 2x [a2-highgpu-1g](https://cloud.google.com/compute/docs/accelerator-optimized-machines#a2-vms) Login Nodes

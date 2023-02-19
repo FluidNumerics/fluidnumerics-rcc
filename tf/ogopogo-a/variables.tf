@@ -151,12 +151,17 @@ EOD
     enable_job_exclusive    = bool
     enable_placement_groups = bool
     partition_conf          = map(string)
+    partition_startup_scripts_timeout = number
     partition_startup_scripts = list(object({
       filename = string
       content  = string
     }))
     partition_name = string
     partition_nodes = list(object({
+      access_config = list(object({
+        network_tier = string
+        nat_ip       = string
+      }))
       node_count_static      = number
       node_count_dynamic_max = number
       group_name             = string
@@ -217,4 +222,29 @@ EOD
     zone_policy_deny  = list(string)
   }))
   default = []
+}
+
+
+variable "cloudsql_enable_ipv4" {
+  type = bool
+  description = "Flag to enable external access to the cloudsql instance"
+  default = false
+}
+
+variable "cloudsql_slurmdb" {
+  type = bool
+  description = "Boolean flag to enable (True) or disable (False) CloudSQL Slurm Database"
+  default = false
+}
+
+variable "cloudsql_name" {
+  type = string
+  description = "Name of the cloudsql instance used to host the Slurm database, if cloudsql_slurmdb is set to true"
+  default = "slurmdb"
+}
+
+variable "cloudsql_tier" {
+  type = string
+  description = "Instance type of the CloudSQL instance. See https://cloud.google.com/sql/docs/mysql/instance-settings for more options."
+  default = "db-n1-standard-8"
 }
