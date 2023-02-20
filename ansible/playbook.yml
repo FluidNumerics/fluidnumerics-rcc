@@ -6,6 +6,9 @@
   become_user: root
 
   tasks:
+    - name: Install yum packages
+      ansible.builtin.script: scripts/pkgs.sh
+
     - name: Install ROCm
       ansible.builtin.script: scripts/rocm.sh
 
