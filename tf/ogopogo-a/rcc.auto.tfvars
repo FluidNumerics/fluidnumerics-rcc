@@ -1,5 +1,5 @@
 project_id = "fluidnumerics-rcc"
-slurm_cluster_name = "ogopogoa"
+slurm_cluster_name = "ogopogo"
 image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1675197965"
 
 controller_machine_type = "n2d-standard-8"
@@ -10,8 +10,11 @@ login_machine_type = "n2d-standard-8"
 login_disk_size_gb = 50
 login_disk_type = "pd-ssd"
 
-zone = "northamerica-northeast1-a"
-region = "northamerica-northeast1"
+//zone = "northamerica-northeast1-a"
+//region = "northamerica-northeast1"
+
+zone = "us-central1-f"
+region = "us-central1"
 
 cloudsql_slurmdb = true
 cloudsql_enable_ipv4 = false

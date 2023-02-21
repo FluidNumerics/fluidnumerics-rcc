@@ -69,7 +69,8 @@ do
   spack load ${c}
   spack compiler find --scope site
   if [[ "${c}" == *"intel"* ]]; then
-    spack install --fail-fast $MPI % intel
+#    spack install --fail-fast $MPI % intel
+    echo "Not installing MPI flavor with Intel OneAPI"
   else
     spack install --fail-fast $MPI % ${c}
   fi
