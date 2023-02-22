@@ -15,7 +15,7 @@
     
     
       
-        <title>Deploy the cluster with Terraform - Fluid Numerics RCC</title>
+        <title>Working with Terraform - Fluid Numerics RCC</title>
       
     
     
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deploy the cluster with Terraform
+              Working with Terraform
             
           </span>
         </div>
@@ -481,6 +481,110 @@
 
   
   
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          For Admins
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="For Admins" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          For Admins
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Working with Terraform
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Working with Terraform
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-workflow" class="md-nav__link">
+    Deployment Workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#production-system-management" class="md-nav__link">
+    Production System Management
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
   
     <li class="md-nav__item">
       <a href="../../contact-us/" class="md-nav__link">
@@ -517,16 +621,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#directory-organization" class="md-nav__link">
-    Directory Organization
+  <a href="#deployment-workflow" class="md-nav__link">
+    Deployment Workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployment Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#production-system-management" class="md-nav__link">
+    Production System Management
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#deploy-the-catalog-solution-via-terrafor" class="md-nav__link">
-    Deploy the Catalog Solution via Terrafor
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -544,89 +654,41 @@
                 
                   
 
-  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/admin/DeployWithTerraform.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/admin/Terraform.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 <h1 id="deploy-the-cluster-with-terraform">Deploy the cluster with Terraform</h1>
-<h2 id="directory-organization">Directory Organization</h2>
-<p>The fluidnumerics-rcc repository contains scripts for building virtual machine images in addition to Terraform infrastructure as code (IAC). The Terraform IAC is defined under the <code>tf/</code> directory, which has the following contents</p>
+<p>Fluid Numerics manages cloud infrastructure using <a href="https://www.terraform.io/">Terraform</a> infrastructure-as-code. The login nodes, controller, and compute nodes are handled by our fork of <a href="https://github.com/fluidnumerics/slurm-gcp">slurm-gcp</a>. Optional Lustre file systems are handled by our <a href="https://github.com/FluidNumerics/lustre-gcp_terraform">lustre-gcp_terraform</a> modules. Optional NFS storage is brought in through the <a href="https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/filestore_instance">Filestore resource</a> and a Cloud SQL hosted Slurm database is brought in through a few terraform resources to create a Cloud SQL instance.</p>
+<p>Production versions of the cluster host the terraform state information in Google Cloud Storage so that our team can have a consistent view of the deployed infrastructure</p>
+<h2 id="deployment-workflow">Deployment Workflow</h2>
+<h3 id="production-system-management">Production System Management</h3>
+<p>The production deployment of Ogopogo is defined in the <code>tf/ogopogo-a</code> directory, which contains</p>
 <ul>
-<li><code>tf/main.tf</code> - This main deployment file is meant to be used with <a href="https://cloud.google.com/service-catalog/docs">Google Cloud Service Catalog</a>, to create a click-to-deploy interface that has only the necessary customizable attributes. This file leverages <code>tf/prod/</code> as a module, but reduces the number of customizable attributes to make an easier to use click-to-deploy interface.</li>
-<li><code>tf/variables.tf</code> - Defines the inputs for <code>tf/main.tf</code> and defines the Service Catalog form inputs.</li>
-<li><code>tf/prod</code> - Defines the production version of the complete interface for creating the Slurm cluster and supporting resources.</li>
-<li><code>tf/dev</code> - Defines experimental versions of the Terraform IAC which is used with the Cloud Build pipelines for testing.</li>
+<li><code>main.tf</code> - The main terraform file that optionally creates Lustre and Filestore file systems and the cluster (using the <code>tf/cluster</code> wrapper module)</li>
+<li><code>variables.tf</code> - Definitions of input and output variables</li>
+<li><code>rcc.auto.tfvars</code> - Concretizations that define the specific deployment for Ogopogo</li>
 </ul>
-<h2 id="deploy-the-catalog-solution-via-terrafor">Deploy the Catalog Solution via Terrafor</h2>
-<p>The catalog solution is configured to deploy a cluster with the following resources</p>
-<ul>
-<li>2x <a href="https://cloud.google.com/compute/docs/accelerator-optimized-machines#a2-vms">a2-highgpu-1g</a> Login Nodes</li>
-<li>1x <a href="https://cloud.google.com/compute/docs/general-purpose-machines#n2d_machines">n2d-standard-224</a> Slurm Controller</li>
-<li>1x <a href="https://cloud.google.com/filestore">Filestore</a> NFS Server (Configurable with standard, high scale, or enterprise tiers)</li>
-<li>A100 Compute Partition - Autoscaling, preemptible instances with variable 1-16 A100 GPUs/node</li>
-<li>T4 Compute Partition - Autoscaling, preemptible instances with variable 1-4 T4 GPUs/node</li>
-<li>N2 Compute Partition - Autoscaling, preemptible instances with variable 16-64 Intel CascadeLake vCPU/node</li>
-</ul>
-<p>Although the cluster can be deployed through a click-to-deploy interface with the Google Cloud Service Catalog, you may find it more beneficial for your workflow to deploy with Terraform.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You will not be able to make changes to the production, unless you are granted time-limited admin access to the project hosting the cluster.</p>
+</div>
+<p>The production system is updated only during scheduled maintenance windows and when sufficient feature upgrades and system patches are ready for deployment. Changes made to the cluster are motivated by user support requests and system administrator reports. In general, this updates involve the following steps</p>
 <ol>
-<li><a href="https://shell.cloud.google.com?show=terminal">Open a Cloud Shell in your web browser</a>.</li>
-<li>
-<p>Set your project using the <code>gcloud</code> sdk, replacing <code>&lt;PROJECT-ID&gt;</code> with your Google Cloud project ID.</p>
-<pre><code>gcloud config set project &lt;PROJECT-ID&gt;
-</code></pre>
-</li>
-<li>
-<p>Clone the <code>fluidnumerics-rcc</code> repository</p>
-<pre><code>git clone https://github.com/fluidnumerics/fluidnumerics-rcc ~/fluidnumerics-rcc
-</code></pre>
-</li>
-<li>
-<p>Navigate to the directory containing the Terraform IAC</p>
-<pre><code>cd ~/fluidnumerics-rcc/tf
-</code></pre>
-</li>
-<li>
-<p>Create a file called <code>rcc.auto.tfvars</code> in a text editor and add the following definitions to customize your deployment</p>
-<pre><code>project_id = "fluidnumerics-tpu"
-
-slurm_cluster_name = "myrcc"
-
-controller_machine_type = "n2d-standard-224"
-
-controller_disk_size_gb = 2048
-
-controller_disk_type = "pd-ssd"
-
-filestore_name = "rcc-fs"
-
-filestore_local_mount = "/mnt/filestore"
-
-filestore_capacity_gb = "10240"
-
-# Can be STANDARD, PREMIUM, BASIC_HDD, BASIC_SSD, HIGH_SCALE_SSD and ENTERPRISE
-filestore_tier = "HIGH_SCALE_SSD"
-</code></pre>
-</li>
-<li>
-<p>Initialize Terraform and validate your configuration</p>
-<pre><code>terraform init
-terraform validate
-</code></pre>
-</li>
-<li>
-<p>Create a Terraform plan</p>
-<pre><code>terraform plan -out=tfplan
-</code></pre>
-</li>
-<li>
-<p>Apply the plan to create your resources</p>
-<pre><code>terraform apply "tfplan"
-</code></pre>
-</li>
+<li>Virtual Machine Images containing OS updates or new software packages are baked and tested in private test deployments (defined in <code>tf/ogopogo-b</code>) on a branch off of <code>main</code> branch of the <code>fluidnumerics-rcc</code> repository.</li>
+<li>Changes to the Terraform IAC are implemented and tested in private test deployments (defined in <code>tf/ogopogo-b</code>) on a branch off the <code>main</code> branch of the <code>fluidnumerics-rcc</code> repository.</li>
+<li>Pull requests are issued to the main branch to encourage team review of the changes that are made.</li>
+<li>Before the scheduled maintenance period, the new version of <code>main</code> is tagged for release, which triggers an automated build of a new VM image for the cluster. </li>
+<li>This image is deployed in a new test cluster in a separate project for administrator team review. i</li>
+<li>Once the team reviews and approves this test cluster, the changes are carried into <code>ogopogo-a</code> and a terraform plan is generated for review by system administrators and a cloud architect.</li>
+<li>Once the deployment is approved, the cluster is updated, replacing the controller and login nodes in the process. System adminsitrators verify functionality of the cluster before returning access to users.</li>
 </ol>
-<p>When you want to destroy all of the resources that have been created, you can run <code>terraform destroy</code> from the <code>~/fluidnumerics-rcc/tf/</code> directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All testing is done in a Google Cloud project separate from the production Google Cloud project</p>
+</div>
 
 
 
@@ -642,6 +704,42 @@ terraform validate
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../../hardware/Ogopogo/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ogopogo" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Ogopogo
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../contact-us/" class="md-footer__link md-footer__link--next" aria-label="Next: Contact Support" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Contact Support
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
