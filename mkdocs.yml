@@ -28,6 +28,8 @@ nav:
   - Hardware:
     - Infrastructure Overview: hardware/README.md
     - Ogopogo: hardware/Ogopogo.md
+  - For Admins:
+    - Working with Terraform: admin/Terraform.md
   - Contact Support: contact-us.md
 
 
