@@ -3,8 +3,8 @@
 # Prerequisites
 INSTALL_ROOT="/opt"
 SPACK_VERSION="v0.19.1"
-
-COMPILERS=("gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
+SYSTEM_COMPILER="gcc@4.8.5"
+COMPILERS=("gcc@9.5.0", "gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
 MPI="openmpi@4.1.2"
 
 # Install prerequisites
@@ -65,13 +65,15 @@ EOT
 # Install compilers and mpi flavors
 for c in "${COMPILERS[@]}"
 do
-  spack install ${c}
-  spack load ${c}
-  spack compiler find --scope site
   if [[ "${c}" == *"intel"* ]]; then
-#    spack install --fail-fast $MPI % intel
+    spack install ${c} % ${SYSTEM_COMPILER}
+    spack load ${c}
+    spack compiler find --scope site
     echo "Not installing MPI flavor with Intel OneAPI"
-  else
+  elif [[ "${c}" == *"gcc"* ]]; then
+    spack install ${c} +nvptx % ${SYSTEM_COMPILER}
+    spack load ${c}
+    spack compiler find --scope site
     spack install --fail-fast $MPI % ${c}
   fi
 done

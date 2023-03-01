@@ -33,6 +33,11 @@ Slurm jobs have a status code (the `ST` column) associated with them which chang
 * `CG` - The job is in a completing state and the associated compute resources are being cleaned up.
 * `(Resources)` - There are insufficient resources available to schedule your job at the moment. 
 
+
+!!!note
+    If your job is in a pending state, you can see when it is scheduled to run with `squeue --start`
+
+
 You can filter the results of `squeue` by the partition, user, job state, compute nodes, and more; examples are given below
 
 !!! note
