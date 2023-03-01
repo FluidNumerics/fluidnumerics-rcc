@@ -8,30 +8,32 @@ The Research Computing Cloud (RCC) is a cloud-native Research Computing cluster 
 
 
 ## Getting Access
-There are a few ways in which you can use the RCC. It can be as simple as getting a fluidnumerics.cloud account and logging into our shared [Ogopogo cluster](hardware/Ogopogo.md). If you desire privacy and a cluster tailored to your organization's specific needs, we can customize a Slurm cluster to deploy in your projects on Google Cloud.
+Fluid Numerics currently offers two options to get access to the RCC.
 
-### Use the cluster deployed in Fluid Numerics' Cloud
-To use the shared RCC, you will need to [request a fluidnumerics.cloud account]([https://fluidnumerics.atlassian.net/servicedesk/customer/portal/9/group/55/create/157]). With a fluidnumerics.cloud account, we provide you with help desk services, system administration services, system documentation, and live user training. If you ever need specific compute resources, we can adjust the size, shape, and types of compute nodes during regular maintenance periods; however, [we tried to cover all the bases]()
+1. **Design and deploy under fluidnumerics.com** - With this approach, you do not need to have Google Workspace, Cloud Identity, or a Google Cloud Project. Fluid Numerics will create and manage user accounts, in addition to designing, deploying, and managing your cluster to fit your organization's needs.
 
-Once you have an account, you will [need an allocation](). In some cases, you may not know how many CPU-hours, GPU-hours, or disk space you need for your project (and it's ok!) . With a [mentored sprint](https://www.fluidnumerics.com/products/mentored-sprints), we can help you port your application to our system and develop estimates for your allocation. Alternatively, you can [buy a startup allocation]() and follow our [porting best practices guide](start/porting-best-practices.md) to get yourself started.
+2. **Design and deploy in your project** - With this approach, you bring Google Workspace, Cloud Identity, and a Google Cloud Project. We work with you to design, deploy, and manage your cluster.
 
-!!! note "Low CO2"
-    Fluid Numerics' RCC, [named "Ogopogo"](hardware/Ogopogo.md), is deployed in data centers on Google Cloud that have [low carbon emissions](https://cloud.google.com/sustainability/region-carbon#data)
-
-#### Ogopogo Cluster Status
+Both options come with help desk and system administration support services. 
 
 
-!!! note ""
-   <center>[**View Open Support Tickets**](https://fluidnumerics.atlassian.net/servicedesk/customer/user/requests?page=1&reporter=org-12&statuses=open)</center>
+## Pricing
+Our pricing model is simple. 
 
+### Compute 
+All compute costs are direct billed to you as we receive them from Google Cloud.
 
-### Customize and deploy in your project
-Look, we get it. Sometimes you need privacy, don't want to wait in a queue, and really need a cluster tailored to your specific goals. Fluid Numerics can [create a self-service catalog solution]() or [fully manage a customized deployment]() in your project. 
+### Support Services
+Support service rates are billed in units of FTE-Months. An "FTE" is a full-time-employee. You determine how many FTE's you want on-hand to keep your cluster maintained and a warm body behind the help desk (our minimum is 1/8 FTE-month)
+
+FTE-Month | Cost/Month(USD) 
+--------- | ----------------
+   1/8    |  $4,800.00
+   1/4    |  $6,195.00
+   1/2    |  Reach out for pricing
+    1     |  Reach out for pricing
 
 !!!note "Get started"
     <center>**Reach out to [contracts@fluidnumerics.com](mailto:contracts@fluidnumerics.com) for pricing and a solution overview.**</center>
-
-With this route, you manage compute, storage, and networking costs directly with Google or your current Google Cloud reseller. We will manage VM images, infrastructure-as-code, and tailored user documentation while also providing you with help desk services, system administration services, and user training on request.
-
-
+    If you do not currently have a Google Cloud domain, Fluid Numerics can help you get started with Google Workspace, Cloud Identity, and Google Cloud. We are a certified Google Workspace and Google Cloud Reseller and service partner.
 
