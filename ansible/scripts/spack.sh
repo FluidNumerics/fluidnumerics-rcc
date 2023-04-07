@@ -77,3 +77,6 @@ do
     spack install --fail-fast $MPI % ${c}
   fi
 done
+
+# Additional packages
+spack install apptainer
