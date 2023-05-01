@@ -6,3 +6,4 @@ public/
 *.tfstate.backup
 *.zip
 tfplan
+*.swp
