@@ -2,7 +2,6 @@
 # GENERAL #
 ###########
 
-project_id = "fluidnumerics-rcc"
 zone       = "us-central1-a"
 
 #########

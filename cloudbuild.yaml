@@ -14,7 +14,7 @@ steps:
 
 - id: Validate the build configuration
   name: 'packer:latest'
-  args: ["validate", "-var-file=packer/fluidnumerics.hcl","slurm-gcp/packer"]
+  args: ["validate", "-var-file=packer/fluidnumerics.hcl", "-var","project_id=${PROJECT_ID}","slurm-gcp/packer"]
 
 - id: Fix netrc permissions
   name: 'packer:latest'
@@ -27,7 +27,7 @@ steps:
 
 - id: Build the VM image
   name: 'packer:latest'
-  args: ["build","-var-file=packer/fluidnumerics.hcl","slurm-gcp/packer"]
+  args: ["build","-var-file=packer/fluidnumerics.hcl", "-var","project_id=${PROJECT_ID}", "slurm-gcp/packer"]
 
 
 timeout: 28800s
