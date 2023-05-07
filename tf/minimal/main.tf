@@ -46,8 +46,8 @@ locals {
       shielded_instance_config = x.shielded_instance_config
       region                   = x.region
       source_image_family      = x.source_image_family
-      source_image_project     = x.source_image_project
-      source_image             = x.source_image
+      source_image_project     = var.source_image_project
+      source_image             = var.source_image
       static_ip                = x.static_ip
       subnetwork_project       = null
       subnetwork               = module.slurm_network.network.network_name
@@ -86,8 +86,8 @@ locals {
       shielded_instance_config = x.shielded_instance_config
       region                   = x.region
       source_image_family      = x.source_image_family
-      source_image_project     = x.source_image_project
-      source_image             = x.source_image
+      source_image_project     = var.source_image_project
+      source_image             = var.source_image
       static_ips               = x.static_ips
       subnetwork_project       = null
       subnetwork               = module.slurm_network.network.network_name
@@ -108,7 +108,6 @@ locals {
       partition_nodes = [for n in x.partition_nodes : {
         access_config            = n.access_config
         additional_disks         = n.additional_disks
-        additional_networks      = []
         bandwidth_tier           = n.bandwidth_tier
         can_ip_forward           = n.can_ip_forward
         node_count_dynamic_max   = n.node_count_dynamic_max
@@ -136,13 +135,14 @@ locals {
         shielded_instance_config = n.shielded_instance_config
         spot_instance_config     = n.spot_instance_config
         source_image_family      = n.source_image_family
-        source_image_project     = n.source_image_project
-        source_image             = n.source_image
+        source_image_project     = var.source_image_project
+        source_image             = var.source_image
         tags                     = n.tags
       }]
       region             = x.region
       subnetwork_project = null
       subnetwork         = module.slurm_network.network.network_name
+      additional_networks = []
       zone_policy_allow  = x.zone_policy_allow
       zone_policy_deny   = x.zone_policy_deny
     }
@@ -194,7 +194,8 @@ module "project_services" {
 ###########
 
 module "slurm_network" {
-  source = "github.com/fluidnumerics/slurm-gcp//terraform/_network"
+//  source = "github.com/fluidnumerics/slurm-gcp//terraform/_network"
+  source = "../../slurm-gcp/terraform/_network"
 
   auto_create_subnetworks = false
   mtu                     = var.mtu
@@ -214,7 +215,8 @@ module "slurm_network" {
 ##################
 
 module "slurm_firewall_rules" {
-  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_firewall_rules"
+//  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_firewall_rules"
+  source = "../../slurm-gcp/terraform/slurm_firewall_rules"
 
   slurm_cluster_name = var.slurm_cluster_name
   network_name       = module.slurm_network.network.network_self_link
@@ -231,7 +233,8 @@ module "slurm_firewall_rules" {
 ##########################
 
 module "slurm_sa_iam" {
-  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_sa_iam"
+//  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_sa_iam"
+  source = "../../slurm-gcp/terraform/slurm_sa_iam"
 
   for_each = toset(["controller", "login", "compute"])
 
@@ -331,7 +334,8 @@ module "lustre" {
 #################
 
 module "slurm_cluster" {
-  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_cluster"
+//  source = "github.com/fluidnumerics/slurm-gcp//terraform/slurm_cluster"
+  source = "../../slurm-gcp/terraform/slurm_cluster"
 
   cgroup_conf_tpl            = var.cgroup_conf_tpl
   cloud_parameters           = local.cloud_parameters

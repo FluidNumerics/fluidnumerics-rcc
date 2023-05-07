@@ -621,3 +621,13 @@ variable "lustre" {
   }
 }
 
+
+variable "source_image" {
+  type = string
+  description = "Name of the image for this cluster"
+}
+
+variable "source_image_project" {
+  type = string
+  description = "Name of the project hosting the image for this cluster"
+}

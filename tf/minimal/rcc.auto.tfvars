@@ -3,7 +3,12 @@ source_image_project = "CHANGE-ME"
 source_image = "CHANGE-ME"
 
 region = "us-central1"
-zone = "us-central1-a"
+subnets = [
+  {
+    subnet_ip     = "10.0.0.0/16"
+    subnet_region = "us-central1"
+  },
+]
 
 #######################
 # Slurm configuration #
@@ -14,6 +19,8 @@ slurm_cluster_name = "demo"
 slurm_conf_tpl    = "../etc/slurm.conf.tpl"
 
 controller_instance_config = {
+  additional_disks = []
+  additional_disks = []
   additional_disks = []
   can_ip_forward   = null
   disable_smt      = false
