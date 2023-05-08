@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.3">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
@@ -253,20 +253,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../cost/" class="md-nav__link">
-        Ogopogo Pricing
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -278,9 +264,60 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Porting Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Porting Guide
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#porting-process" class="md-nav__link">
+    Porting Process
+  </a>
+  
+    <nav class="md-nav" aria-label="Porting Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#containers-or-bare-cloud" class="md-nav__link">
+    Containers or bare-cloud ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-software-requirements" class="md-nav__link">
+    Identify Software Requirements
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -529,6 +566,53 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Codelabs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Codelabs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Codelabs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../codelabs/deploy-test-rcc/" class="md-nav__link">
+        Deploy and Test Fluid Numerics Research Computing Cloud
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -570,6 +654,41 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#porting-process" class="md-nav__link">
+    Porting Process
+  </a>
+  
+    <nav class="md-nav" aria-label="Porting Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#containers-or-bare-cloud" class="md-nav__link">
+    Containers or bare-cloud ?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identify-software-requirements" class="md-nav__link">
+    Identify Software Requirements
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -589,6 +708,14 @@
 
 
 <h1 id="application-porting-guide">Application Porting Guide</h1>
+<p>Whenever you start using a new system, you will need to spend some time up front to get your applications running. This process is called "porting" and this short guide is meant to help you be successful. </p>
+<p><a class="md-button md-button--primary" href="">Port your software to the cloud in four weeks with a mentored sprint</a></p>
+<h2 id="porting-process">Porting Process</h2>
+<h3 id="containers-or-bare-cloud">Containers or bare-cloud ?</h3>
+<p>All of our RCC solutions come with Apptainer pre-installed. This allows you to run Docker or Apptainer containers on the cluster. Containers provide the advantage that you are in complete control of the environment inside your container; you can choose the operating system, compilers, and additional software packages you would like to have installed.</p>
+<p>On the other hand, the "bare-cloud" approach requires your preferred compilers and software dependencies to be installed on the RCC VM images themselves. This can be done in your home directory space using tools like <a href="https://spack.io">Spack</a>. If you are using Python, you can use <a href="">Conda</a> or <a href="">Python environments</a>. Alternatively, you can work with Fluid Numerics support team to have compilers and additional software installed on your VM images.</p>
+<h3 id="identify-software-requirements">Identify Software Requirements</h3>
+<p>With your approach in mind</p>
 
 
 
@@ -609,7 +736,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../cost/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Ogopogo Pricing" rel="prev">
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -618,7 +745,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Ogopogo Pricing
+              Getting Started
             </div>
           </div>
         </a>
@@ -665,7 +792,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.078830c0.min.js"></script>
+      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
     
   </body>

@@ -1,0 +1,261 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Deploy &amp; Test Fluid Numerics&#39; Research Computing Cloud</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid="UA-125720260-6"
+                  id="deploy-test-rcc"
+                  title="Deploy &amp; Test Fluid Numerics&#39; Research Computing Cloud"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p><strong>Last Updated:</strong> 2023-05-02</p>
+<h2 is-upgraded><strong>What you will build</strong></h2>
+<p>In this codelab, you will create a virtual machine image for the Research Computing Cluster (RCC) based on the CentOS 7 operating system. This image will be built using Google Cloud Build with Packer and Ansible. You will then use the created image to deploy a basic RCC, with a Slurm controller, login node, and an array of compute partitions. From here, you will log into the cluster and complete a system verification punchlist to ensure the cluster is operational.</p>
+<h2 is-upgraded><strong>What you will learn</strong></h2>
+<p>By completing this codelab, you will learn about</p>
+<ul>
+<li>The infrastructure components that make up the RCC</li>
+<li>The workflow for creating virtual machine images and deploying a basic RCC cluster</li>
+<li>A basic workflow for smoke-testing the RCC</li>
+</ul>
+<h2 is-upgraded><strong>What you will need</strong></h2>
+<ul>
+<li><a href="https://www.google.com/gmail/" target="_blank">Gmail Account</a> with <a href="https://cloud.google.com/compute/docs/instances/managing-instance-access#add_oslogin_keys" target="_blank">an SSH key attached</a>, or <a href="https://gsuite.google.com/" target="_blank">Google Workspace</a>, <a href="https://cloud.google.com/identity" target="_blank">Cloud Identity</a></li>
+<li><a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects" target="_blank">Google Cloud Platform Project with Billing enabled</a></li>
+<li>Project owner role on your GCP Project</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="RCC Infrastructure Overview" duration="15">
+        <p>Fluid Numerics&#39; Research Computing Cluster (RCC) is a flexible and scalable cluster that runs on Google Cloud and has the look-and-feel of a traditional on-premise HPC cluster. It comes equipped with the Slurm workload manager and is able to be attached to a variety of file system types, including NFS, Lustre, GCS, and Wekafs.</p>
+<p class="image-container"><img style="width: 624.00px" src="img/7aa73069033f8719.png"></p>
+<p>The diagram above is an architecture diagram of Fluid Numerics RCC. It consists of a set of login nodes, a controller that hosts the Slurm workload manager, optional additional file systems, and an optional external Slurm database. Users are able to access the cluster through the login nodes using SSH; access is mediated by Identity and Access Management (IAM) on Google Cloud. To access the cluster, users must be assigned Compute OS Login and Service Account User roles on the same project the cluster is deployed to. </p>
+<h2 is-upgraded><strong>Login, Controller, and Compute Nodes</strong></h2>
+<p>On the login node, users have access to Slurm commands that can be used to schedule and monitor interactive and batch jobs. The Slurm controller and database daemons run on the controller instance and are responsible for managing workloads submitted by users. Compute nodes are grouped into partitions in Slurm. Most often, we use partitions to create homogeneous groups of compute nodes. Having multiple partitions on the cluster allows users to have access to a variety of CPU types, GPU types, and compute node topologies.</p>
+<p>All jobs run on compute nodes, which are most often set as ephemeral compute nodes. This means that the compute nodes are created only when jobs are submitted, and deprovisioned when they are idle for a period of time (default is five minutes). Jobs are submitted using Slurm&#39;s salloc, srun, or sbatch commands. When a job is submitted, the Slurm controller will assign the job to a compute node according to job parameters (e.g. partition, core count, GPU type, etc.). </p>
+<p>The controller uses Slurm&#39;s powersave module to run a &#34;resume&#34; script that uses Google Compute Engine Bulk API to create compute nodes. Once initiated, the spinup process can take up to 5 minutes; nodes that do not come online in this period of time are marked down and often we need to triage the system to understand why this happened. After a job completes, the idle compute node will remain active for 5 minutes, so that jobs can run on-demand in during this time period. If no additional jobs are submitted in this time period, the Slurm powersave module runs a &#34;suspend&#39; script to delete the nodes from Google Compute Engine and places the nodes in a cloud state.</p>
+<h2 is-upgraded><strong>File Systems</strong></h2>
+<p>The home directory is mounted across all instances of the cluster. In the default configuration, the home directory is hosted by the controller, which is NFS mounted onto the login node(s) and compute node(s). When the cluster is shared by multiple users, this configuration is not ideal. When a user has a job with a heavy IO load to the home directory, the cluster can become sluggish if not unresponsive; this happens often because of bottlenecks associated with the disk IOPs or network bandwidth from the controller. To work around this, Fluid Numerics offers configurations with <a href="https://cloud.google.com/filestore" target="_blank">Google Filestore</a> or <a href="https://weka.io" target="_blank">WekaFS</a> to host home directories.</p>
+<p>When workloads are performing parallel file IO on large files, as is typically the case with computational fluid dynamics, molecular dynamics, and other grid or particle based solvers, the Lustre file system can help improve performance considerably. For Lustre, Fluid Numerics has an open-source Lustre solution that can be deployed alongside the cluster using Terraform. In some cases, customers will prefer a fully supported solution; here, we can rely on DDN&#39;s Lustre solution in the Google Cloud Marketplace. Often, Lustre is mounted to /scratch or /lustre on all nodes on the cluster.</p>
+<h2 is-upgraded><strong>Slurm Database</strong></h2>
+<p>The Slurm Database is a MySQL database that is, by default, hosted on the Slurm controller using MariaDB. Sometimes, customers would like for the Slurm job history to be persistent between system upgrades</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bake a RCC VM Image" duration="60">
+        <h2 is-upgraded>Overview of Image Baking in the fluidnumerics-rcc project</h2>
+<p>&#34;Image Baking&#34; refers to the process of installing software and configuring the operating system on a virtual machine image so that it can later be deployed on compute hardware. On Google Cloud, we work with publicly available Google Compute Engine Virtual Machine Images as the &#34;base image&#34;. For our purposes, the base image is identified by the operating system we want to work with. </p>
+<p><a href="https://github.com/fluidnumerics/fluidnumerics-rcc" target="_blank">Fluid Numerics RCC</a> is based on the open source <a href="https://github.com/schedmd/slurm-gcp" target="_blank">SchedMD/Slurm-GCP</a> project; technically our builds are based on the <a href="https://github.com/fluidnumerics/slurm-gcp" target="_blank">FluidNumerics/Slurm-GCP</a> fork of this repository, which has features and bug fixes incorporated that our customers have requested. The Slurm-GCP repository contains the Packer and Ansible files that are used to install Slurm and all of its dependencies. It also allows us to append our own Ansible playbooks so that we can install additional packages during the build process.</p>
+<p>Packer files are written in the Hashicorp Configuration Language (HCL) and they provide a template for the image baking process. A template is concretized by specifying values for variables. For the RCC, the build template is defined in <a href="https://github.com/FluidNumerics/slurm-gcp/blob/master/packer/main.pkr.hcl" target="_blank">Slurm-GCP/packer/main.pkr.hcl</a> and the associated variables are defined in <a href="https://github.com/FluidNumerics/slurm-gcp/blob/master/packer/variables.pkr.hcl" target="_blank">Slurm-GCP/packer/variables.pkr.hcl</a>   </p>
+<p>A specific build can be concretized by specifying values for the template variables in  a pkvars.hcl file. An example pkvars.hcl file is provided with Slurm-GCP. Our RCC build uses  <a href="https://github.com/FluidNumerics/fluidnumerics-rcc/blob/main/packer/fluidnumerics.hcl" target="_blank">fluidnumerics/fluidnumerics-rcc/packer/fluidnumerics.hcl</a>. The <code>fluidnumerics.hcl</code> file is currently configured to use the CentOS 7 VM image as the base image and to use the ansible playbook under <a href="https://github.com/FluidNumerics/fluidnumerics-rcc/blob/main/ansible/playbook.yml" target="_blank">fluidnumerics-rcc/ansible/playbook.yml</a> to install additional packages that we want to have on our cluster. This playbook specifies a list of scripts to run in the <a href="https://github.com/FluidNumerics/fluidnumerics-rcc/tree/main/ansible/scripts" target="_blank">fluidnumerics-rcc/ansible/scripts</a> directory.</p>
+<p>If you have Packer, Ansible, and the gcloud CLI installed on your system, you can manually trigger a build of the VM images. In practice, however, we prefer to use <a href="https://cloud.google.com/build" target="_blank">Google Cloud Build</a>, which allows us to define the steps necessary to build our image. The Cloud Build build pipeline is defined in the <a href="https://github.com/FluidNumerics/fluidnumerics-rcc/blob/main/cloudbuild.yaml" target="_blank">fluidnumerics-rcc/cloudbuild.yaml</a> file. Each step in the build pipeline runs inside of a Docker container, which allows us to create a consistent build environment for every build, independent of who is running the build. This means that we have control over the versions of packer, ansible, and gcloud used to create the build; this is critical for debugging and problem solving as a team, when problems inevitably arise.</p>
+<h2 is-upgraded><strong>Baking the Image</strong></h2>
+<p>To bake the VM image, you will work in Google Cloud Shell, which already has the gcloud CLI installed and configured. For this build, you will manually trigger a build in Google Cloud Build.</p>
+<ol type="1" start="1">
+<li>Open your Google Cloud Shell by navigating to <a href="https://shell.cloud.google.com/?show=terminal" target="_blank">https://shell.cloud.google.com/?show=terminal</a> . Make sure that you are logged in using your fluidnumerics.com account.</li>
+<li>Set the default Google Cloud Project to <code>fluid-cluster-dev</code> using the gcloud CLI<br></li>
+</ol>
+<pre>gcloud config set project fluid-cluster-dev</pre>
+<ol type="1" start="3">
+<li>Clone the <code>fluidnumerics-rcc</code> repository in your cloud shell and navigate to the repository root directory.</li>
+</ol>
+<pre>git clone git@github.com:FluidNumerics/fluidnumerics-rcc.git ~/fluidnumerics-rcc
+cd ~/fluidnumerics-rcc</pre>
+<ol type="1" start="4">
+<li>Initialize and update the slurm-gcp submodule</li>
+</ol>
+<pre>git submodule init
+git submodule update</pre>
+<ol type="1" start="5">
+<li>Submit a build to Cloud Build using the gcloud CLI. We&#39;ll use the --async flag so that the manually triggered build will return immediately, even though the build is running.</li>
+</ol>
+<pre>gcloud builds submit . --config=cloudbuild.yaml --project=fluid-cluster-dev --async</pre>
+<p>Once the build is submitted, it can take up to one hour for the build to finish. In the meantime, let&#39;s talk about some things you can monitor to track progress. First, you can navigate to the Cloud Build console using the products and services menu at <a href="https://console.cloud.google.com" target="_blank">https://console.cloud.google.com</a>; make sure that your project is set to <code>fluid-cluster-dev</code>. Find your way to the build history and click on the active build that you just created. The page should look something like the screenshot shown below.</p>
+<p class="image-container"><img style="width: 624.00px" src="img/4d2a6873e77e6f02.png"></p>
+<p>Recall that the Cloud Build build pipeline uses Packer and Ansible to create VM images. Under the hood, Packer will make the appropriate calls to the Google Compute Engine API to provision a virtual machine; you may see information in the Cloud Build logs that indicate this. Once the VM is created, Packer will establish an SSH connection with the VM and Ansible is then used to run each Ansible playbook and associated scripts. </p>
+<p>The benefit here is that Packer and Ansible will handle any errors in a convenient way; whenever an error occurs, the exit code will be sent back to Cloud Build and the VM will be deprovisioned safely. When a build finishes successfully, Packer will stop the VM, create a VM image and save it to Google Compute Engine, and then deprovision the instance.</p>
+<p>Since we now know that Packer handles creates a virtual machine during the build process, you can also see what is happening in Google Compute Engine. Using the products and services menu, you can navigate to the Google Compute Engine page. Once there, you should see something similar to the image below.</p>
+<p class="image-container"><img style="width: 624.00px" src="img/6ab2d6d4c26fac7e.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Deploy the RCC with Terraform" duration="30">
+        <h2 is-upgraded>What you will deploy</h2>
+<p>The RCC and the associated infrastructure are deployed using Terraform infrastructure as code. The fluidnumerics-rcc/terraform/ subdirectory contains sample deployments that provide good starting points for different use-cases. In this tutorial, we will use the minimal/ configuration, which deploys the following resources </p>
+<ul>
+<li>VPC network, subnetwork, and firewall rules</li>
+<li>Service accounts for the login, controller, and compute nodes</li>
+<li>1x n1-standard-4 login node with instance template</li>
+<li>1x n1-standard-4 controller with instance template</li>
+<li>Instance template for the c2-standard-16 compute nodes.</li>
+</ul>
+<p>The /home directory and Slurm database are hosted on the controller. One partition is defined with 10x ephemeral c2-standard-16 instances.</p>
+<h2 is-upgraded>Deploy</h2>
+<ol type="1" start="1">
+<li><a href="https://console.cloud.google.com/?cloudshell=true" target="_blank">Open your Cloud Shell on GCP.</a></li>
+<li>Navigate to the fluidnumerics-rcc/terraform/minimal directory</li>
+</ol>
+<pre>cd ~/fluidnumerics-rcc/terraform/minimal</pre>
+<ol type="1" start="3">
+<li>Edit the <code>rcc.auto.tfvars</code> file to set the <code>project_id</code> and <code>source_image_projec</code>t to <code>fluid-cluster-dev</code> and the <code>source_image</code> to the name of the image generated during the build. You can find the name of the image at the end of the Cloud Build build logs, or by navigating to the Compute Engine &gt; Images page on the Google Cloud console.</li>
+<li>Initialize terraform. This step will download all of the terraform modules required to deploy the infrastructure into the .terraform/ subdirectory.</li>
+</ol>
+<pre>terraform init</pre>
+<ol type="1" start="5">
+<li>Make sure that your Terraform configuration is valid</li>
+</ol>
+<pre>terraform validate</pre>
+<ol type="1" start="6">
+<li>Once you have confirmed that you have a valid configuration, you can create a plan for the infrastructure. In operational settings, the terraform plan is created by Google Cloud Build, which provides a plan in the logs for us to review as a team.</li>
+</ol>
+<pre>terraform plan -out=tfplan</pre>
+<ol type="1" start="7">
+<li>Once the plan is created, you can then create the infrastructure using <code>terraform apply</code>. This process can take a few minutes to complete.</li>
+</ol>
+<pre>terraform apply &#34;tfplan&#34;</pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Smoke-testing &amp; Triage" duration="30">
+        <p>Smoke-testing refers to the process of verifying the cluster performs to the desired specifications. At a bare minimum, the cluster needs to meet the following criteria</p>
+<ul>
+<li>Slurm is configured on the controller and usable from the login node</li>
+<li>All network storage components are mounted to the login and compute nodes</li>
+<li>Compute nodes spin up when jobs are submitted</li>
+</ul>
+<p>When additional software is installed on the VM images, we also want to run tests that verify the software is installed and operational; we won&#39;t be doing this check here.</p>
+<p>In this section, we&#39;ll walk through a few things you will always check when deploying a new cluster. Note that if the author of this codelab has provided you access to a project, the likely engineered a problem you will encounter during these steps; refer to the Triage subsection for information on how to tackle these problems.</p>
+<ol type="1" start="1">
+<li>Log in to the clusters login node. You can do this a few ways</li>
+</ol>
+<ol type="1" start="1">
+<li>Go to the Compute Engine UI at <a href="https://console.cloud.google.com/compute/instances" target="_blank">https://console.cloud.google.com/compute/instances</a> and find the login node. Click the SSH button; this will open a terminal in a new browser window. Note that if this option is not available, you do not have sufficient permissions to access the login node in this way.<img style="width: 624.00px" src="img/60fe1876c020b5b6.png"></li>
+<li>Add an SSH key to your Cloud Identity account using the gcloud CLI ( <a href="https://cloud.google.com/sdk/gcloud/reference/compute/os-login/ssh-keys/add" target="_blank">https://cloud.google.com/sdk/gcloud/reference/compute/os-login/ssh-keys/add</a> ). For details on creating SSH keys, see <a href="https://cloud.google.com/compute/docs/connect/create-ssh-keys" target="_blank">https://cloud.google.com/compute/docs/connect/create-ssh-keys</a> . Once you&#39;ve created the ssh key on your local workstation and attached it to your account, you can ssh from your workstation, replacing <code>IP_ADDRESS</code> with the external ip address of the login node.</li>
+</ol>
+<pre>ssh IP_ADDRESS</pre>
+<ol type="1" start="2">
+<li>Verify that the appropriate directories are mounted to the login node using <code>df -h</code> . For this simple deployment, you should see <code>/home</code>, <code>/opt/apps</code>, and <code>/etc/munge</code> mounted from the controller.</li>
+</ol>
+<pre>$ df -h
+Filesystem                  Size  Used Avail Use% Mounted on
+devtmpfs                    7.3G     0  7.3G   0% /dev
+tmpfs                       7.3G     0  7.3G   0% /dev/shm
+tmpfs                       7.3G  8.6M  7.3G   1% /run
+tmpfs                       7.3G     0  7.3G   0% /sys/fs/cgroup
+/dev/sda2                   100G   38G   63G  38% /
+/dev/sda1                   200M   12M  189M   6% /boot/efi
+demo-controller:/opt/apps   100G   38G   63G  38% /opt/apps
+demo-controller:/etc/munge  100G   38G   63G  38% /etc/munge
+demo-controller:/home       100G   38G   63G  38% /home
+tmpfs                       1.5G     0  1.5G   0% /run/user/20000</pre>
+<ol type="1" start="3">
+<li>Verify that you can list the partitions available to the cluster, using the <code>sinfo</code> Slurm command.</li>
+</ol>
+<pre>$ sinfo
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+c216*        up   infinite   10  idle~ demo-c216-sm-[0-9]</pre>
+<ol type="1" start="4">
+<li>Verify that packages are made available through environment modules.</li>
+</ol>
+<pre>$ module avail
+
+--------------------------------- /opt/apps/modulefiles ----------------------------------
+   openmpi/v4.1.x
+
+Use &#34;module spider&#34; to find all possible modules and extensions.
+Use &#34;module keyword key1 key2 ...&#34; to search for all possible modules matching any of the
+&#34;keys&#34;.</pre>
+<ol type="1" start="5">
+<li>Verify that you can successfully submit a job. The simplest way to do this is use <code>srun</code> to run a job step, which runs a single command on a compute node and returns; here, we&#39;ll just run <code>hostname</code> to return the name of the compute node. After submitting the command below, watch the Compute Engine UI page to see the compute node being created when the job is submitted. Keep in mind that it can take up to 5 minutes for the node to become active.</li>
+</ol>
+<pre>$ srun -n1 hostname
+demo-c216-sm-0</pre>
+<aside class="warning"><p><strong>Attention :</strong> If you encountered an issue with any of these steps, follow any guidance in the Triage section and open a ticket at the <a href="https://fluidnumerics.atlassian.net/servicedesk/customer/portals" target="_blank">Fluid Numerics Help Desk</a> or reach out on the rcc-support channel on Slack.</p>
+</aside>
+<h2 is-upgraded><strong>Triage</strong></h2>
+<h3 is-upgraded>Compute node or job submission failures</h3>
+<p>In the event the compute node is not created or the job step does not run, you can now start triage. </p>
+<p>The first thing you will do is note the symptoms of the problem and the steps to reproduce the issue. The &#34;presenting symptoms&#34; include any messages relayed to the user by the cluster immediately following the steps to reproduce. For example, if you ran <code>srun -n1 hostname</code> and the compute node failed to spin up, Slurm will provide some information about the node failure after a few minutes.</p>
+<p>The next step is to seek out other symptoms that are presented in the cluster&#39;s log files. Logs for Slurm can be found on the controller instance of the cluster under <code>/var/log/slurm</code> . Because of this, it is best to log into the cluster&#39;s controller when performing triage for issues related to job submission/compute node failures. There are a few log files that may be of interest to you in your efforts to characterize the source of the issue</p>
+<ul>
+<li><code>/var/log/slurm/resume.log</code> - This is the &#34;Resume log&#34;. When compute nodes are created to meet the job submission requirements, the <code>/slurm/scripts/resume.py</code> script is executed to create the correct number and type of compute nodes, using Google Compute Engine&#39;s Bulk API. Any issues with creating nodes will be likely reported in this log file. If you notice compute nodes are not being created at all in the compute engine console, this log file will most often point to the reason why.</li>
+<li><code>/var/log/slurm/slurmctld.log</code> - This is the &#34;Controller Daemon log&#34;. If compute nodes are coming online but are failing to connect to the controller or the compute node Slurm daemons are failing to start, this log file will often indicate why.</li>
+<li><code>/var/log/slurm/suspend.log</code> - This is the &#34;Suspend log&#34;. When compute nodes are idle for some time, they are deleted by running the <code>/slurm/scripts/suspend.py</code> script. Any issues with deprovisioning compute nodes will be found here.</li>
+<li><code>/var/log/slurm/slurmdbd.log</code> - This is the &#34;Slurm Database log&#34;</li>
+<li><code>/var/log/slurm/slurmsync.log</code> - This is the &#34;Slurm sync log&#34;. Slurm-GCP and the RCC support preemptible instances, which means that Google can reclaim these compute nodes at any time. When this happens, Slurm registers this as a node failure and the compute node is marked down. The /slurm/scripts/slurmsync.py script runs every minute (crontab) and checks for downed nodes that were preempted and re-idles them so that work can be rescheduled on those nodes. Any issues with jobs failing to be scheduled on preemptible instances will likely be linked to logs reported in this log file.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clean up" duration="20">
+        <p>To avoid incurring charges to your Google Cloud account for the resources used in this codelab:</p>
+<ol type="1" start="1">
+<li><a href="https://console.cloud.google.com/?cloudshell=true" target="_blank">Open your Cloud Shell on GCP.</a></li>
+<li>Navigate to the fluidnumerics-rcc/terraform/minimal directory</li>
+</ol>
+<pre>cd ~/fluidnumerics-rcc/terraform/minimal</pre>
+<ol type="1" start="3">
+<li>Use terraform to delete the deployment.</li>
+</ol>
+<pre>terraform destroy</pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clean up and Further Reading" duration="0">
+        <p>In this codelab, you </p>
+<ul>
+<li>Created a VM image for the RCC</li>
+<li>Deployed a minimal RCC using the VM image you created</li>
+<li>Verified the deployment was working - (and possibly resolved an issue)</li>
+<li>Deleted a RCC deployment</li>
+</ul>
+<p>We recommend the following reading to help you further develop your skills as an engineer and administrator of the RCC</p>
+<ul>
+<li>IT Service Management - <a href="https://www.atlassian.com/itsm/service-request-management" target="_blank">https://www.atlassian.com/itsm/service-request-management</a></li>
+<li>Fluid Numerics RCC documentation - <a href="https://fluidnumerics.github.io/fluidnumerics-rcc" target="_blank">https://fluidnumerics.github.io/fluidnumerics-rcc</a></li>
+<li>Slurm Documentation</li>
+<li><a href="https://slurm.schedmd.com/sbatch.html" target="_blank">https://slurm.schedmd.com/sbatch.html</a></li>
+<li><a href="https://slurm.schedmd.com/srun.html" target="_blank">https://slurm.schedmd.com/srun.html</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1-giLwMqxOQrQCxUTP15jotKLAC_Mjdf_XAIVFuQXIXs/edit#gid=0" target="_blank">RCC Deployment Checklist</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
