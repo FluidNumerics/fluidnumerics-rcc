@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2023-05-08T13:27:04Z",
+  "id": "deploy-test-rcc",
+  "duration": 155,
+  "title": "Deploy \u0026 Test Fluid Numerics' Research Computing Cloud",
+  "authors": "Joseph Schoonover",
+  "summary": "This codelab will walk you through the basics of getting started with the Research Computing Cloud. You will learn how to bake virtual machine images, deploy an autoscaling cluster, and test the cluster to verify that it is properly set up.",
+  "source": "1WFoWX3BbVDqiLfgo53ePWcadvzha-RSfB1M_iZNSVpU",
+  "theme": "hpc",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "hpc"
+  ],
+  "tags": [
+    "web"
+  ],
+  "ga": "UA-125720260-6",
+  "url": "deploy-test-rcc"
+}

@@ -15,7 +15,6 @@ nav:
   - Home: README.md
   - Getting Started:
     - Getting Started: start/README.md
-    - Ogopogo Pricing: start/cost.md
     - Porting Guide: start/porting-best-practices.md
   - Running Jobs: 
     - Running Jobs: jobs/README.md
@@ -30,6 +29,8 @@ nav:
     - Ogopogo: hardware/Ogopogo.md
   - For Admins:
     - Working with Terraform: admin/Terraform.md
+    - Codelabs:
+      - Deploy and Test Fluid Numerics Research Computing Cloud: codelabs/deploy-test-rcc/index.html
   - Contact Support: contact-us.md
 
 
@@ -56,5 +57,9 @@ markdown_extensions:
   - admonition
   - pymdownx.arithmatex:
       generic: true
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins: []
