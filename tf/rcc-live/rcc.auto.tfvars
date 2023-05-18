@@ -1,6 +1,6 @@
-project_id = "CHANGE-ME"
-source_image_project = "CHANGE-ME"
-source_image = "CHANGE-ME"
+project_id = "fluidnumerics-rcc"
+source_image_project = "fluidnumerics-rcc"
+source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
 
 region = "us-central1"
 subnets = [
@@ -14,7 +14,7 @@ subnets = [
 # Slurm configuration #
 #######################
 
-slurm_cluster_name = "demo"
+slurm_cluster_name = "rcc-live"
 
 slurm_conf_tpl    = "../etc/slurm.conf.tpl"
 
@@ -26,8 +26,8 @@ controller_instance_config = {
   disable_smt      = false
   disk_auto_delete = true
   disk_labels = {}
-  disk_size_gb           = 100
-  disk_type              = "pd-standard"
+  disk_size_gb           = 2048
+  disk_type              = "pd-ssd"
   enable_confidential_vm = false
   enable_oslogin         = true
   enable_shielded_vm     = false
@@ -101,57 +101,286 @@ login_nodes = [
   },
 ]
 partitions = [
-  {
-    enable_job_exclusive    = false
-    enable_placement_groups = false
-    network_storage         = []
-    partition_conf = {
-      Default     = "YES"
-      SuspendTime = 300
-    }
-    partition_startup_scripts = []
-    partition_name = "c216"
-    partition_nodes = [
-      {
-        group_name             = "sm"
-        access_config = []
-        node_count_dynamic_max = 6000
-        node_count_static      = 0
-        node_conf = {
-          Features = "test"
-        }
-        additional_disks         = []
-        can_ip_forward           = true
-        disable_smt              = false
-        disk_auto_delete         = true
-        disk_labels              = {}
-        disk_size_gb             = 100
-        disk_type                = "pd-ssd"
-        enable_confidential_vm   = false
-        enable_oslogin           = true
-        enable_shielded_vm       = false
-        gpu                      = null
-        labels                   = {}
-        machine_type             = "c2-standard-16"
-        metadata                 = {}
-        min_cpu_platform         = null
-        on_host_maintenance      = null
-        preemptible              = false
-        shielded_instance_config = null
-        source_image_family  = null
-        source_image_project = null
-        source_image         = null
-        tags                     = []
-        instance_template = null
-        bandwidth_tier = null
-        enable_spot_vm = false
-        spot_instance_config = {
-          termination_action = "STOP"
-        }
-      },
-    ]
-    region            = "us-central1"
-    zone_policy_allow = []
-    zone_policy_deny  = []
-  },
-]
+    {
+      enable_job_exclusive    = false
+      enable_placement_groups = false
+      network_storage         = []
+      partition_conf = {
+        Default     = "YES"
+        SuspendTime = 300
+      }
+      partition_startup_scripts = []
+      partition_startup_scripts_timeout = 300
+      partition_name = "c260"
+      partition_nodes = [
+        {
+          access_config = []
+          group_name             = "sm"
+          node_count_dynamic_max = 20
+          node_count_static      = 0
+          node_conf = {
+            Features = "test"
+          }
+          additional_disks         = []
+          can_ip_forward           = true
+          disable_smt              = false
+          disk_auto_delete         = true
+          disk_labels              = {}
+          disk_size_gb             = 50
+          disk_type                = "pd-ssd"
+          enable_confidential_vm   = false
+          enable_oslogin           = true
+          enable_shielded_vm       = false
+          gpu                      = null
+          labels                   = {}
+          machine_type             = "c2-standard-60"
+          metadata                 = {}
+          min_cpu_platform         = null
+          on_host_maintenance      = null
+          preemptible              = true
+          shielded_instance_config = null
+          source_image_family  = null
+          source_image_project = "fluidnumerics-rcc"
+          source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
+          tags                     = []
+          instance_template = null
+          bandwidth_tier = "platform_default"
+          enable_spot_vm = false
+          spot_instance_config = {
+            termination_action = "STOP"
+          }
+        },
+      ]
+      region            = null
+      zone_policy_allow = []
+      zone_policy_deny  = []
+    },
+    {
+      enable_job_exclusive    = false
+      enable_placement_groups = false
+      network_storage         = []
+      partition_conf = {
+        Default     = "YES"
+        SuspendTime = 300
+      }
+      partition_startup_scripts = []
+      partition_startup_scripts_timeout = 300
+      partition_name = "gvx1"
+      partition_nodes = [
+        {
+          access_config = []
+          group_name             = "sm"
+          node_count_dynamic_max = 10
+          node_count_static      = 0
+          node_conf = {
+            Features = "test"
+          }
+          additional_disks         = []
+          can_ip_forward           = true
+          disable_smt              = false
+          disk_auto_delete         = true
+          disk_labels              = {}
+          disk_size_gb             = 50
+          disk_type                = "pd-ssd"
+          enable_confidential_vm   = false
+          enable_oslogin           = true
+          enable_shielded_vm       = false
+          gpu                      = {
+            count = 1,
+            type = "nvidia-tesla-v100"
+          }
+          labels                   = {}
+          machine_type             = "n1-standard-8"
+          metadata                 = {}
+          min_cpu_platform         = null
+          on_host_maintenance      = null
+          preemptible              = true
+          shielded_instance_config = null
+          source_image_family  = null
+          source_image_project = "fluidnumerics-rcc"
+          source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
+          tags                     = []
+          instance_template = null
+          bandwidth_tier = "platform_default"
+          enable_spot_vm = false
+          spot_instance_config = {
+            termination_action = "STOP"
+          }
+        },
+      ]
+      region            = null
+      zone_policy_allow = []
+      zone_policy_deny  = []
+    },
+    {
+      enable_job_exclusive    = false
+      enable_placement_groups = false
+      network_storage         = []
+      partition_conf = {
+        Default     = "YES"
+        SuspendTime = 300
+      }
+      partition_startup_scripts = []
+      partition_startup_scripts_timeout = 300
+      partition_name = "gvx8"
+      partition_nodes = [
+        {
+          access_config = []
+          group_name             = "sm"
+          node_count_dynamic_max = 5
+          node_count_static      = 0
+          node_conf = {
+            Features = "test"
+          }
+          additional_disks         = []
+          can_ip_forward           = true
+          disable_smt              = false
+          disk_auto_delete         = true
+          disk_labels              = {}
+          disk_size_gb             = 50
+          disk_type                = "pd-ssd"
+          enable_confidential_vm   = false
+          enable_oslogin           = true
+          enable_shielded_vm       = false
+          gpu                      = {
+            count = 8,
+            type = "nvidia-tesla-v100"
+          }
+          labels                   = {}
+          machine_type             = "n1-standard-96"
+          metadata                 = {}
+          min_cpu_platform         = null
+          on_host_maintenance      = null
+          preemptible              = true
+          shielded_instance_config = null
+          source_image_family  = null
+          source_image_project = "fluidnumerics-rcc"
+          source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
+          tags                     = []
+          instance_template = null
+          bandwidth_tier = "platform_default"
+          enable_spot_vm = false
+          spot_instance_config = {
+            termination_action = "STOP"
+          }
+        },
+      ]
+      region            = null
+      zone_policy_allow = []
+      zone_policy_deny  = []
+    },
+    {
+      enable_job_exclusive    = false
+      enable_placement_groups = false
+      network_storage         = []
+      partition_conf = {
+        Default     = "YES"
+        SuspendTime = 300
+      }
+      partition_startup_scripts = []
+      partition_startup_scripts_timeout = 300
+      partition_name = "gax1"
+      partition_nodes = [
+        {
+          access_config = []
+          group_name             = "sm"
+          node_count_dynamic_max = 10
+          node_count_static      = 0
+          node_conf = {
+            Features = "test"
+          }
+          additional_disks         = []
+          can_ip_forward           = true
+          disable_smt              = false
+          disk_auto_delete         = true
+          disk_labels              = {}
+          disk_size_gb             = 50
+          disk_type                = "pd-ssd"
+          enable_confidential_vm   = false
+          enable_oslogin           = true
+          enable_shielded_vm       = false
+          gpu                      = {
+            count = 1,
+            type = "nvidia-tesla-a100"
+          }
+          labels                   = {}
+          machine_type             = "a2-highgpu-1g"
+          metadata                 = {}
+          min_cpu_platform         = null
+          on_host_maintenance      = null
+          preemptible              = true
+          shielded_instance_config = null
+          source_image_family  = null
+          source_image_project = "fluidnumerics-rcc"
+          source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
+          tags                     = []
+          instance_template = null
+          bandwidth_tier = "platform_default"
+          enable_spot_vm = false
+          spot_instance_config = {
+            termination_action = "STOP"
+          }
+        },
+      ]
+      region            = null
+      zone_policy_allow = []
+      zone_policy_deny  = []
+    },
+    {
+      enable_job_exclusive    = false
+      enable_placement_groups = false
+      network_storage         = []
+      partition_conf = {
+        Default     = "YES"
+        SuspendTime = 300
+      }
+      partition_startup_scripts = []
+      partition_startup_scripts_timeout = 300
+      partition_name = "gax8"
+      partition_nodes = [
+        {
+          access_config = []
+          group_name             = "sm"
+          node_count_dynamic_max = 5
+          node_count_static      = 0
+          node_conf = {
+            Features = "test"
+          }
+          additional_disks         = []
+          can_ip_forward           = true
+          disable_smt              = false
+          disk_auto_delete         = true
+          disk_labels              = {}
+          disk_size_gb             = 50
+          disk_type                = "pd-ssd"
+          enable_confidential_vm   = false
+          enable_oslogin           = true
+          enable_shielded_vm       = false
+          gpu                      = {
+            count = 1,
+            type = "nvidia-tesla-a100"
+          }
+          labels                   = {}
+          machine_type             = "a2-highgpu-8g"
+          metadata                 = {}
+          min_cpu_platform         = null
+          on_host_maintenance      = null
+          preemptible              = true
+          shielded_instance_config = null
+          source_image_family  = null
+          source_image_project = "fluidnumerics-rcc"
+          source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1684438104"
+          tags                     = []
+          instance_template = null
+          bandwidth_tier = "platform_default"
+          enable_spot_vm = false
+          spot_instance_config = {
+            termination_action = "STOP"
+          }
+        },
+      ]
+      region            = null
+      zone_policy_allow = []
+      zone_policy_deny  = []
+    },
+  ]
