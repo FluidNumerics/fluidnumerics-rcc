@@ -14,26 +14,24 @@ Fluid Numerics currently offers two options to get access to the RCC.
 
 2. **Design and deploy in your project** - With this approach, you bring Google Workspace, Cloud Identity, and a Google Cloud Project. We work with you to design, deploy, and manage your cluster.
 
-Both options come with help desk and system administration support services. 
+Both options come with system administration, help desk, and technical support services. 
+
+[Contact Fluid Numerics for a demo today](#){ .md-button .md-button--primary }
 
 
 ## Pricing
-Our pricing model is simple. 
+Our pricing model is simple. You pay for the compute resources you use and the human resources you reserve. 
 
 ### Compute 
-All compute costs are direct billed to you as we receive them from Google Cloud.
+If you deploy in our project, you will need to establish a credit account with Fluid Numerics. All compute costs are direct billed to you as we receive them from Google Cloud.
+
+If you deploy in your project, you pay Google Cloud or your Google Cloud Resell partner directly.
 
 ### Support Services
-Support service rates are billed in units of FTE-Months. An "FTE" is a full-time-employee. You determine how many FTE's you want on-hand to keep your cluster maintained and a warm body behind the help desk (our minimum is 1/8 FTE-month)
+Support service rates are billed in units of FTE-Months and are offered as reservations of our capacity. An "FTE" is a full-time-employee. You determine how many FTE's you want on-hand to keep your cluster maintained and a warm body behind the help desk. If you are unsure of how much support you need, we can help you capacity plan to either supplement your existing staff or leverage us for remote support.
 
-FTE-Month | Cost/Month(USD) 
---------- | ----------------
-   1/8    |  $4,800.00
-   1/4    |  $6,195.00
-   1/2    |  Reach out for pricing
-    1     |  Reach out for pricing
+[Contact Fluid Numerics for pricing :fontawesome-solid-paper-plane:](mailto:contracts@fluidnumerics.com){ .md-button .md-button--primary }
 
 !!!note "Get started"
-    <center>**Reach out to [contracts@fluidnumerics.com](mailto:contracts@fluidnumerics.com) for pricing and a solution overview.**</center>
     If you do not currently have a Google Cloud domain, Fluid Numerics can help you get started with Google Workspace, Cloud Identity, and Google Cloud. We are a certified Google Workspace and Google Cloud Reseller and service partner.
 
