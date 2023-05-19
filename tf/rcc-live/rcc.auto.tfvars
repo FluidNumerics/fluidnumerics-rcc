@@ -14,7 +14,7 @@ subnets = [
 # Slurm configuration #
 #######################
 
-slurm_cluster_name = "rcc-live"
+slurm_cluster_name = "rcclive"
 
 slurm_conf_tpl    = "../etc/slurm.conf.tpl"
 
