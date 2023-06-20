@@ -7,3 +7,5 @@ yum install -y boost-devel \
 yum-config-manager --enable rhel-server-rhscl-7-rpms
 
 yum install -y devtoolset-7
+
+yum install -y code
