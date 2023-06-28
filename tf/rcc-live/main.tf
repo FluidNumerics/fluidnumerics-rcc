@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+terraform {
+  backend "gcs" {
+    bucket  = "fluidnumerics-rcc_cluster"
+    prefix  = "rcclive"
+  }
+}
+
 ##########
 # LOCALS #
 ##########
