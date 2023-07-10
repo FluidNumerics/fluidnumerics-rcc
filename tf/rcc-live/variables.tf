@@ -515,6 +515,8 @@ EOD
       source_image_project = string
       source_image         = string
       tags                 = list(string)
+      mem_offset_mb        = optional(number, 0)
+      cpu_spec_list        = optional(string, "")
     }))
     network_storage = list(object({
       local_mount   = string
