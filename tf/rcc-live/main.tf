@@ -145,6 +145,8 @@ locals {
         source_image_project     = var.source_image_project
         source_image             = var.source_image
         tags                     = n.tags
+        mem_offset_mb            = n.mem_offset_mb
+        cpu_spec_list            = n.cpu_spec_list
       }]
       region             = x.region
       subnetwork_project = null
