@@ -16,7 +16,12 @@ subnets = [
 
 slurm_cluster_name = "rcclive"
 
-slurm_conf_tpl    = "../etc/slurm.conf.tpl"
+cloudsql_slurmdb   = true # enable cloudsql for slurm database
+cloudsql_enable_ipv4 = false
+cloudsql_name = "slurmdb"
+cloudsql_tier = "db-n1-standard-8"
+
+slurm_conf_tpl     = "../etc/slurm.conf.tpl"
 
 controller_instance_config = {
   additional_disks = []

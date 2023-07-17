@@ -140,23 +140,23 @@ variable "cloud_parameters" {
   }
 }
 
-variable "cloudsql" {
-  description = <<EOD
-Use this database instead of the one on the controller.
-* server_ip : Address of the database server.
-* user      : The user to access the database as.
-* password  : The password, given the user, to access the given database. (sensitive)
-* db_name   : The database to access.
-EOD
-  type = object({
-    server_ip = string
-    user      = string
-    password  = string # sensitive
-    db_name   = string
-  })
-  default   = null
-  sensitive = true
-}
+# variable "cloudsql" {
+#   description = <<EOD
+# Use this database instead of the one on the controller.
+# * server_ip : Address of the database server.
+# * user      : The user to access the database as.
+# * password  : The password, given the user, to access the given database. (sensitive)
+# * db_name   : The database to access.
+# EOD
+#   type = object({
+#     server_ip = string
+#     user      = string
+#     password  = string # sensitive
+#     db_name   = string
+#   })
+#   default   = null
+#   sensitive = true
+# }
 
 variable "disable_default_mounts" {
   description = <<-EOD
