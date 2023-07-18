@@ -1,3 +1,4 @@
+steps:
 
 - id: Pull slurm-gcp submodule
   name: 'gcr.io/cloud-builders/git'
