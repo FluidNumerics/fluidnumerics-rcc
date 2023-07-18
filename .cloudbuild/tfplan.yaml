@@ -1,0 +1,39 @@
+
+- id: Pull slurm-gcp submodule
+  name: 'gcr.io/cloud-builders/git'
+  args: ['submodule',
+         'update',
+         '--init', 
+         '--recursive']
+
+- id: 'tf init'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      cd tf/rcc-live  
+      terraform init || exit 1
+
+- id: 'tf validate'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      cd tf/rcc-live  
+      terraform validate || exit 1
+
+
+- id: 'tf plan'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      cd tf/rcc-live  
+
+      echo "*************** TERRAFOM PLAN ******************"
+      echo "******* At environment: ${BRANCH_NAME} ********"
+      echo "*************************************************"
+      terraform plan || exit 1
