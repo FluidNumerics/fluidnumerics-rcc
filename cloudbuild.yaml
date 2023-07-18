@@ -1,6 +1,13 @@
 
 steps:
 
+- id: Pull slurm-gcp submodule
+  name: 'gcr.io/cloud-builders/git'
+  args: ['submodule',
+         'update',
+         '--init', 
+         '--recursive']
+
 - id: Build Packer+Ansible
   name: 'gcr.io/cloud-builders/docker'
   args: ['build',
