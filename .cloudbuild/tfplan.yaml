@@ -8,7 +8,7 @@ steps:
          '--recursive']
 
 - id: 'tf init'
-  name: 'hashicorp/terraform:1.0.0'
+  name: 'hashicorp/terraform:1.5.0'
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -17,7 +17,7 @@ steps:
       terraform init || exit 1
 
 - id: 'tf validate'
-  name: 'hashicorp/terraform:1.0.0'
+  name: 'hashicorp/terraform:1.5.0'
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -27,7 +27,7 @@ steps:
 
 
 - id: 'tf plan'
-  name: 'hashicorp/terraform:1.0.0'
+  name: 'hashicorp/terraform:1.5.0'
   entrypoint: 'sh'
   args: 
   - '-c'
