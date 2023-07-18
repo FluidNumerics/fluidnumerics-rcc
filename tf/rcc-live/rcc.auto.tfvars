@@ -19,7 +19,7 @@ slurm_cluster_name = "rcclive"
 cloudsql_slurmdb   = true # enable cloudsql for slurm database
 cloudsql_enable_ipv4 = false
 cloudsql_name = "slurmdb"
-cloudsql_tier = "db-n1-standard-8"
+cloudsql_tier = "db-n1-standard-4"
 
 slurm_conf_tpl     = "../etc/slurm.conf.tpl"
 
