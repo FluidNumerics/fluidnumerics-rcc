@@ -373,7 +373,7 @@ resource "google_sql_database_instance" "slurm_db" {
     tier = var.cloudsql_tier
     ip_configuration {
       ipv4_enabled  = var.cloudsql_enable_ipv4
-      private_network = module.slurm_network.network.network_name
+      private_network = module.slurm_network.network.network_self_link
     }
   }
   deletion_protection = false
