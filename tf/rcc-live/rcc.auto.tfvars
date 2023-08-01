@@ -1,6 +1,6 @@
 project_id = "fluidnumerics-rcc"
 source_image_project = "fluidnumerics-rcc"
-source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1687541602"
+source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1690818539"
 
 region = "us-central1"
 subnets = [
