@@ -1,37 +1,43 @@
 # Fluid Numerics' Research Computing Cloud
 
 ## What is the RCC
-The Research Computing Cloud (RCC) is a cloud-native Research Computing cluster hosted on Google Cloud Platform. The cluster is configured to have a similar look-and-feel to other on-premises resources available at your organization. 
+The Research Computing Cloud (RCC) is a cloud-hybrid Research Computing cluster hosted on Google Cloud Platform and on bespoke Fluid Numerics' systems. The clusters in the RCC are configured to have a similar look-and-feel to other on-premises resources available at your organization and HPC sites. 
 
 !!! note ""
     <center>**Our goal is to bring you scalable cloud-native computing with top tier support that alleviates additional system administration burdens and promotes productivity for researchers, scientists, and HPC-enthusiasts.**</center>
 
 
+## Resources
+
+### Ogopogo
+A Google Cloud hosted auto-scaling HPC cluster that provides access to a breadth of resources. This cluster is configurable on-the-fly to meet specific workflow needs. While this cluster is shared across all Fluid Numerics RCC customers, you have dedicated `/home` directories, group directories, and scratch space. See the current list of partitions below in the interactive dashboard.
+
+<iframe width="800" height="600" src="https://lookerstudio.google.com/embed/reporting/108319e1-3a32-464a-949e-583f655c57bd/page/qdGND" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+### Armory
+A Fluid Numerics hosted cluster in Hickory, North Carolina. This cluster provides acess to AMD GPUs, including
+* Moog - 1x AMD MI25
+* Oram - 4x AMD MI50
+* Noether - 2x AMD MI210
+
+Hardware on this cluster is meant to support experimentation on bleeding edge hardware and we plan to bring some new oddities to the HPC community in the near future.
+
+
+
 ## Getting Access
-Fluid Numerics currently offers two options to get access to the RCC.
-
-1. **Design and deploy under fluidnumerics.com** - With this approach, you do not need to have Google Workspace, Cloud Identity, or a Google Cloud Project. Fluid Numerics will create and manage user accounts, in addition to designing, deploying, and managing your cluster to fit your organization's needs.
-
-2. **Design and deploy in your project** - With this approach, you bring Google Workspace, Cloud Identity, and a Google Cloud Project. We work with you to design, deploy, and manage your cluster.
-
-Both options come with system administration, help desk, and technical support services. 
+Fluid Numerics provides access to resources through `fluidnumerics.cloud` accounts.
 
 [Contact Fluid Numerics for a demo today](#){ .md-button .md-button--primary }
 
 
 ## Pricing
-Our pricing model is simple. You pay for the compute resources you use and the human resources you reserve. 
+Our pricing model is simple. You pay a flat monthly fee for support services and for the compute resources you use. 
 
 ### Compute 
-If you deploy in our project, you will need to establish a credit account with Fluid Numerics. All compute costs are direct billed to you as we receive them from Google Cloud.
-
-If you deploy in your project, you pay Google Cloud or your Google Cloud Resell partner directly.
+If you deploy in our project, you will need to establish a credit account with Fluid Numerics.
 
 ### Support Services
-Support service rates are billed in units of FTE-Months and are offered as reservations of our capacity. An "FTE" is a full-time-employee. You determine how many FTE's you want on-hand to keep your cluster maintained and a warm body behind the help desk. If you are unsure of how much support you need, we can help you capacity plan to either supplement your existing staff or leverage us for remote support.
+Support services require that Fluid Numerics maintains a staff of experts in high performance computing, cloud computing, and domain sciences. All of these skills are highly valued and necessary to provide top tier support to users of our HPC services. We provide the flexibility of month-to-month contracts with discounted rates on annual contracts.
 
-[Contact Fluid Numerics for pricing :fontawesome-solid-paper-plane:](mailto:contracts@fluidnumerics.com){ .md-button .md-button--primary }
-
-!!!note "Get started"
-    If you do not currently have a Google Cloud domain, Fluid Numerics can help you get started with Google Workspace, Cloud Identity, and Google Cloud. We are a certified Google Workspace and Google Cloud Reseller and service partner.
+[Learn more](#){ .md-button .md-button--primary }
 

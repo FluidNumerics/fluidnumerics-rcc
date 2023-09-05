@@ -343,7 +343,6 @@ module "lustre" {
 #######################
 resource "google_compute_global_address" "private_ip_address" {
   count = var.cloudsql_slurmdb ? 1 : 0
-  provider = google-beta
   name = "${var.slurm_cluster_name}-private-ip-address"
   purpose = "VPC_PEERING"
   address_type = "INTERNAL"
@@ -354,7 +353,6 @@ resource "google_compute_global_address" "private_ip_address" {
 
 resource "google_service_networking_connection" "private_vpc_connection" {
   count = var.cloudsql_slurmdb ? 1 : 0
-  provider = google-beta
   network = module.slurm_network.network.network_name
   service = "servicenetworking.googleapis.com"
   reserved_peering_ranges = [google_compute_global_address.private_ip_address[0].name]
@@ -362,7 +360,6 @@ resource "google_service_networking_connection" "private_vpc_connection" {
 
 resource "google_sql_database_instance" "slurm_db" {
   count = var.cloudsql_slurmdb ? 1 : 0
-  provider = google-beta
   name = var.cloudsql_name
   database_version = "MYSQL_5_6"
   region = var.region

@@ -2,16 +2,9 @@
 
 The Research Computing Cloud (RCC) cluster is a cloud-native cluster hosted on Google Cloud, but is set up to be similar to other HPC resources at your organization.
 
-
-## Clusters deployed under fluidnumerics.com
-
-If you'd like to schedule an onboarding video call to quickly get you through the onboarding process, reach out to [rcc-support@fluidnumerics.com](mailto:rcc-support@fluidnumerics.com). 
-
-[Contact Fluid Numerics RCC Support :fontawesome-solid-paper-plane:](mailto:rcc-support@fluidnumerics.com){ .md-button .md-button--primary }
-
 ### Account Creation
 
-If your cluster is deployed under fluidnumerics.com and fully managed by Fluid Numerics, you can access the cluster using a fluidnumerics.cloud account.
+For accounts on Ogopogo and Armory, you can access the cluster using a fluidnumerics.cloud account.
 To request a new account, you can reach out to [Fluid Numerics' RCC Support](https://fluidnumerics.atlassian.net/servicedesk/customer/portal/9/group/56/create/165). Once your account is created, you will need to follow the instructions sent to your email to reset your accounts password.
 
 ### Adding SSH Keys
