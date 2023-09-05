@@ -15,7 +15,7 @@
     
     
       
-        <title>Porting Guide - Fluid Numerics RCC</title>
+        <title>Running Jobs - Fluid Numerics RCC</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#application-porting-guide" class="md-skip">
+        <a href="#running-jobs" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Porting Guide
+              Running Jobs
             
           </span>
         </div>
@@ -224,12 +224,38 @@
       
       
         <label class="md-nav__link" for="__nav_2">
+          Ogopogo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ogopogo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ogopogo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
@@ -241,13 +267,62 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../start/" class="md-nav__link">
         Getting Started
       </a>
     </li>
   
 
             
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start/porting-best-practices/" class="md-nav__link">
+        Porting Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Running Jobs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Running Jobs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Running Jobs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
             
               
@@ -264,61 +339,209 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Porting Guide
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Porting Guide
+        Running Jobs
       </a>
       
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interactive_jobs/" class="md-nav__link">
+        Interactive Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="batch_jobs/" class="md-nav__link">
+        Batch Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="env/" class="md-nav__link">
+        Environment variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gpu_applications/" class="md-nav__link">
+        GPU Accelerated Applications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="run_a_singularity_container/" class="md-nav__link">
+        Deploy Containerized Applications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="job_history/" class="md-nav__link">
+        Check Job Status
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
   
   
   
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    <li class="md-nav__item md-nav__item--nested">
       
-        <li class="md-nav__item">
-  <a href="#porting-process" class="md-nav__link">
-    Porting Process
-  </a>
-  
-    <nav class="md-nav" aria-label="Porting Process">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#containers-or-bare-cloud" class="md-nav__link">
-    Containers or bare-cloud ?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#identify-software-requirements" class="md-nav__link">
-    Identify Software Requirements
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
-    </ul>
-  
-</nav>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
       
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/Ogopogo.md" class="md-nav__link">
+        Ogopogo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Hardware
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hardware" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Hardware
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/" class="md-nav__link">
+        Infrastructure Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardware/Ogopogo/" class="md-nav__link">
+        Ogopogo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -347,206 +570,12 @@
       
       
         <label class="md-nav__link" for="__nav_3">
-          Running Jobs
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Running Jobs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Running Jobs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/" class="md-nav__link">
-        Running Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/interactive_jobs/" class="md-nav__link">
-        Interactive Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/batch_jobs/" class="md-nav__link">
-        Batch Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/env/" class="md-nav__link">
-        Environment variables
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/gpu_applications/" class="md-nav__link">
-        GPU Accelerated Applications
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/run_a_singularity_container/" class="md-nav__link">
-        Deploy Containerized Applications
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../jobs/job_history/" class="md-nav__link">
-        Check Job Status
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          Hardware
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Hardware" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          Hardware
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../hardware/" class="md-nav__link">
-        Infrastructure Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../hardware/Ogopogo/" class="md-nav__link">
-        Ogopogo
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
           For Admins
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="For Admins" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           For Admins
         </label>
@@ -575,18 +604,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5_2">
+        <label class="md-nav__link" for="__nav_3_2">
           Codelabs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Codelabs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           Codelabs
         </label>
@@ -654,41 +683,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#porting-process" class="md-nav__link">
-    Porting Process
-  </a>
-  
-    <nav class="md-nav" aria-label="Porting Process">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#containers-or-bare-cloud" class="md-nav__link">
-    Containers or bare-cloud ?
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#identify-software-requirements" class="md-nav__link">
-    Identify Software Requirements
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -701,21 +695,17 @@
                 
                   
 
-  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/start/porting-best-practices.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/ogopogo/jobs/README.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="application-porting-guide">Application Porting Guide</h1>
-<p>Whenever you start using a new system, you will need to spend some time up front to get your applications running. This process is called "porting" and this short guide is meant to help you be successful. </p>
-<p><a class="md-button md-button--primary" href="">Port your software to the cloud in four weeks with a mentored sprint</a></p>
-<h2 id="porting-process">Porting Process</h2>
-<h3 id="containers-or-bare-cloud">Containers or bare-cloud ?</h3>
-<p>All of our RCC solutions come with Apptainer pre-installed. This allows you to run Docker or Apptainer containers on the cluster. Containers provide the advantage that you are in complete control of the environment inside your container; you can choose the operating system, compilers, and additional software packages you would like to have installed.</p>
-<p>On the other hand, the "bare-cloud" approach requires your preferred compilers and software dependencies to be installed on the RCC VM images themselves. This can be done in your home directory space using tools like <a href="https://spack.io">Spack</a>. If you are using Python, you can use <a href="">Conda</a> or <a href="">Python environments</a>. Alternatively, you can work with Fluid Numerics support team to have compilers and additional software installed on your VM images.</p>
-<h3 id="identify-software-requirements">Identify Software Requirements</h3>
-<p>With your approach in mind</p>
+<h1 id="running-jobs">Running Jobs</h1>
+<p>The Research Computing Cloud (RCC) uses the Slurm job scheduler to queue and manage tasks for execution on the cluster.</p>
+<p>For scripted tasks, you can use Slurm's <a href="batch_jobs/">batch capabilities</a> to queue thousands of jobs and complete workflows with dependencies. </p>
+<p>Alternatively, interactive sessions provide you direct access to a command line interface on compute nodes that have more resources (e.g. higher core count, more memory, or GPUs) than your typical workstation.</p>
+<p>Whether you're considering batch or interactive workflows, it's important to familiarize yourself with typical Slurm commands as well as the available hardware on the RCC.</p>
 
 
 
@@ -736,7 +726,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
+        <a href="../start/porting-best-practices/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Porting Guide" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -745,20 +735,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Getting Started
+              Porting Guide
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../jobs/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Jobs" rel="next">
+        <a href="interactive_jobs/" class="md-footer__link md-footer__link--next" aria-label="Next: Interactive Jobs" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Running Jobs
+              Interactive Jobs
             </div>
           </div>
           <div class="md-footer__button md-icon">

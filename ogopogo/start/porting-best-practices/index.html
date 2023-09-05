@@ -10,19 +10,19 @@
         <meta name="author" content="Fluid Numerics">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.3">
     
     
       
-        <title>Getting Started - Fluid Numerics RCC</title>
+        <title>Porting Guide - Fluid Numerics RCC</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.7a952b86.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a952b86.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
       
       
@@ -39,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-on-the-research-computing-cloud" class="md-skip">
+        <a href="#application-porting-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -82,9 +82,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Fluid Numerics RCC" class="md-header__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
+    <a href="../../.." title="Fluid Numerics RCC" class="md-header__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Porting Guide
             
           </span>
         </div>
@@ -168,9 +168,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Fluid Numerics RCC" class="md-nav__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
+    <a href="../../.." title="Fluid Numerics RCC" class="md-nav__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
       
-  <img src="../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     Fluid Numerics RCC
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -224,16 +224,58 @@
       
       
         <label class="md-nav__link" for="__nav_2">
+          Ogopogo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ogopogo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ogopogo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
           
             
               
@@ -251,12 +293,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Getting Started
+          Porting Guide
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Getting Started
+        Porting Guide
       </a>
       
         
@@ -275,116 +317,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#clusters-deployed-under-fluidnumericscom" class="md-nav__link">
-    Clusters deployed under fluidnumerics.com
+  <a href="#porting-process" class="md-nav__link">
+    Porting Process
   </a>
   
-    <nav class="md-nav" aria-label="Clusters deployed under fluidnumerics.com">
+    <nav class="md-nav" aria-label="Porting Process">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#account-creation" class="md-nav__link">
-    Account Creation
+  <a href="#containers-or-bare-cloud" class="md-nav__link">
+    Containers or bare-cloud ?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#adding-ssh-keys" class="md-nav__link">
-    Adding SSH Keys
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding SSH Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rcc-user-account-manager-app" class="md-nav__link">
-    RCC User Account Manager App
+  <a href="#identify-software-requirements" class="md-nav__link">
+    Identify Software Requirements
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#logging-in" class="md-nav__link">
-    Logging In
-  </a>
-  
-    <nav class="md-nav" aria-label="Logging In">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ogopogo" class="md-nav__link">
-    Ogopogo
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clusters-deployed-in-your-google-cloud-project" class="md-nav__link">
-    Clusters deployed in your Google Cloud project
-  </a>
-  
-    <nav class="md-nav" aria-label="Clusters deployed in your Google Cloud project">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#account-creation_1" class="md-nav__link">
-    Account Creation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-ssh-keys_1" class="md-nav__link">
-    Adding SSH Keys
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding SSH Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-the-gcloud-cli" class="md-nav__link">
-    Using the gcloud CLI
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-via-cloud-shell" class="md-nav__link">
-    Access via Cloud Shell
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
   
 </li>
       
@@ -397,15 +352,247 @@
 
             
           
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Running Jobs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Running Jobs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Running Jobs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
             
               
   
   
   
     <li class="md-nav__item">
-      <a href="porting-best-practices/" class="md-nav__link">
-        Porting Guide
+      <a href="../../jobs/" class="md-nav__link">
+        Running Jobs
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/interactive_jobs/" class="md-nav__link">
+        Interactive Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/batch_jobs/" class="md-nav__link">
+        Batch Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/env/" class="md-nav__link">
+        Environment variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/gpu_applications/" class="md-nav__link">
+        GPU Accelerated Applications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/run_a_singularity_container/" class="md-nav__link">
+        Deploy Containerized Applications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../jobs/job_history/" class="md-nav__link">
+        Check Job Status
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../software/Ogopogo.md" class="md-nav__link">
+        Ogopogo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Hardware
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hardware" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Hardware
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/" class="md-nav__link">
+        Infrastructure Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/Ogopogo/" class="md-nav__link">
+        Ogopogo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -434,206 +621,12 @@
       
       
         <label class="md-nav__link" for="__nav_3">
-          Running Jobs
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Running Jobs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Running Jobs
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/" class="md-nav__link">
-        Running Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/interactive_jobs/" class="md-nav__link">
-        Interactive Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/batch_jobs/" class="md-nav__link">
-        Batch Jobs
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/env/" class="md-nav__link">
-        Environment variables
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/gpu_applications/" class="md-nav__link">
-        GPU Accelerated Applications
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/run_a_singularity_container/" class="md-nav__link">
-        Deploy Containerized Applications
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../jobs/job_history/" class="md-nav__link">
-        Check Job Status
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_4">
-          Hardware
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Hardware" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
-          <span class="md-nav__icon md-icon"></span>
-          Hardware
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hardware/" class="md-nav__link">
-        Infrastructure Overview
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hardware/Ogopogo/" class="md-nav__link">
-        Ogopogo
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5">
           For Admins
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="For Admins" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           For Admins
         </label>
@@ -645,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../admin/Terraform/" class="md-nav__link">
+      <a href="../../../admin/Terraform/" class="md-nav__link">
         Working with Terraform
       </a>
     </li>
@@ -662,18 +655,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5_2">
+        <label class="md-nav__link" for="__nav_3_2">
           Codelabs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Codelabs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           Codelabs
         </label>
@@ -685,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../codelabs/deploy-test-rcc/" class="md-nav__link">
+      <a href="../../../codelabs/deploy-test-rcc/" class="md-nav__link">
         Deploy and Test Fluid Numerics Research Computing Cloud
       </a>
     </li>
@@ -714,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contact-us/" class="md-nav__link">
+      <a href="../../../contact-us/" class="md-nav__link">
         Contact Support
       </a>
     </li>
@@ -748,116 +741,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#clusters-deployed-under-fluidnumericscom" class="md-nav__link">
-    Clusters deployed under fluidnumerics.com
+  <a href="#porting-process" class="md-nav__link">
+    Porting Process
   </a>
   
-    <nav class="md-nav" aria-label="Clusters deployed under fluidnumerics.com">
+    <nav class="md-nav" aria-label="Porting Process">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#account-creation" class="md-nav__link">
-    Account Creation
+  <a href="#containers-or-bare-cloud" class="md-nav__link">
+    Containers or bare-cloud ?
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#adding-ssh-keys" class="md-nav__link">
-    Adding SSH Keys
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding SSH Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rcc-user-account-manager-app" class="md-nav__link">
-    RCC User Account Manager App
+  <a href="#identify-software-requirements" class="md-nav__link">
+    Identify Software Requirements
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#logging-in" class="md-nav__link">
-    Logging In
-  </a>
-  
-    <nav class="md-nav" aria-label="Logging In">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ogopogo" class="md-nav__link">
-    Ogopogo
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#clusters-deployed-in-your-google-cloud-project" class="md-nav__link">
-    Clusters deployed in your Google Cloud project
-  </a>
-  
-    <nav class="md-nav" aria-label="Clusters deployed in your Google Cloud project">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#account-creation_1" class="md-nav__link">
-    Account Creation
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#adding-ssh-keys_1" class="md-nav__link">
-    Adding SSH Keys
-  </a>
-  
-    <nav class="md-nav" aria-label="Adding SSH Keys">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-the-gcloud-cli" class="md-nav__link">
-    Using the gcloud CLI
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#access-via-cloud-shell" class="md-nav__link">
-    Access via Cloud Shell
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
   
 </li>
       
@@ -875,72 +781,21 @@
                 
                   
 
-  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/start/README.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/ogopogo/start/porting-best-practices.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="getting-started-on-the-research-computing-cloud">Getting Started on the Research Computing Cloud</h1>
-<p>The Research Computing Cloud (RCC) cluster is a cloud-native cluster hosted on Google Cloud, but is set up to be similar to other HPC resources at your organization.</p>
-<h2 id="clusters-deployed-under-fluidnumericscom">Clusters deployed under fluidnumerics.com</h2>
-<p>If you'd like to schedule an onboarding video call to quickly get you through the onboarding process, reach out to <a href="mailto:rcc-support@fluidnumerics.com">rcc-support@fluidnumerics.com</a>. </p>
-<p><a class="md-button md-button--primary" href="mailto:rcc-support@fluidnumerics.com">Contact Fluid Numerics RCC Support <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6l-126.3-52.5-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488v-96c0-5.3 1.8-10.5 5.1-14.7l165.3-212.6c2.5-7.1-6.5-14.3-13-8.4l-179 161.9-32 28.9c-9.2 8.3-22.3 10.6-33.8 5.8l-85-35.4C8.4 312.8.8 302.2.1 290s5.5-23.7 16.1-29.8l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg></span></a></p>
-<h3 id="account-creation">Account Creation</h3>
-<p>If your cluster is deployed under fluidnumerics.com and fully managed by Fluid Numerics, you can access the cluster using a fluidnumerics.cloud account.
-To request a new account, you can reach out to <a href="https://fluidnumerics.atlassian.net/servicedesk/customer/portal/9/group/56/create/165">Fluid Numerics' RCC Support</a>. Once your account is created, you will need to follow the instructions sent to your email to reset your accounts password.</p>
-<h3 id="adding-ssh-keys">Adding SSH Keys</h3>
-<p>Once you have completed the initial account setup, you will need to attach SSH keys to your account using the RCC User Account Manager.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To access the RCC User Account Manager App, you will need to log in using your fluidnumerics.cloud credentials.</p>
-</div>
-<h4 id="rcc-user-account-manager-app">RCC User Account Manager App</h4>
-<p><a class="md-button md-button--primary" href="https://www.appsheet.com/start/8585ebf6-032c-4a08-95a6-34702bae6bb8">Access via your browser</a>
-<a class="md-button md-button--primary" href="https://www.appsheet.com/newshortcut/8585ebf6-032c-4a08-95a6-34702bae6bb8">Install on your smartphone</a></p>
-<h3 id="logging-in">Logging In</h3>
-<p>Once you have an ssh key attached to your Cloud Identity profile, you can access the RCC cluster via ssh from Windows, Mac, and Linux workstations.</p>
-<pre><code>ssh your_username@{ip-address}
-</code></pre>
-<h4 id="ogopogo">Ogopogo</h4>
-<p>If you are using Fluid Numerics' shared Ogopogo cluster, you can log in using </p>
-<pre><code>ssh your_username@ogopogo.fluidnumerics.cloud
-</code></pre>
-<h2 id="clusters-deployed-in-your-google-cloud-project">Clusters deployed in your Google Cloud project</h2>
-<p>If you'd like to schedule an onboarding video call to quickly get you through the onboarding process, reach out to <a href="mailto:rcc-support@fluidnumerics.com">rcc-support@fluidnumerics.com</a>. </p>
-<p><a class="md-button md-button--primary" href="mailto:rcc-support@fluidnumerics.com">Contact Fluid Numerics RCC Support <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6l-126.3-52.5-40.1 74.5c-5.2 9.7-16.3 14.6-27 11.9S192 499 192 488v-96c0-5.3 1.8-10.5 5.1-14.7l165.3-212.6c2.5-7.1-6.5-14.3-13-8.4l-179 161.9-32 28.9c-9.2 8.3-22.3 10.6-33.8 5.8l-85-35.4C8.4 312.8.8 302.2.1 290s5.5-23.7 16.1-29.8l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg></span></a></p>
-<h3 id="account-creation_1">Account Creation</h3>
-<p>If your cluster is deployed in your organization's Google Cloud project, you can access your RCC cluster using your GMail or Cloud Identity accounts. To create an account, your Google Workspace administrator will need to create a GMail or Cloud Identity account for you. Additionally, your Google Cloud IAM/Security Manager will need to grant you the following roles on the Google Cloud project hosting your cluster</p>
-<ul>
-<li>Compute OS Login</li>
-<li>Service Account User</li>
-</ul>
-<h3 id="adding-ssh-keys_1">Adding SSH Keys</h3>
-<p>Once you have completed the initial account setup, you will need to attach SSH keys to your account using either the gcloud CLI or <a href="https://shell.cloud.google.com/?show=terminal">Cloud Shell</a>.</p>
-<h4 id="using-the-gcloud-cli">Using the gcloud CLI</h4>
-<h4 id="access-via-cloud-shell">Access via Cloud Shell</h4>
-<p>Google Cloud Shell provides a convenient Linux based terminal in your web-browser.</p>
-<p>In your web browser, navigate to https://shell.cloud.google.com?show=terminal . <em>Make sure that you are logged in as your fluidnumerics.cloud account</em>. </p>
-<p>In Cloud Shell, set the Google Cloud project to <code>{customer-project}</code>,</p>
-<pre><code>gcloud config set project {customer-project}
-</code></pre>
-<p>Next, create an ssh key pair,</p>
-<pre><code>ssh-keygen -t rsa 
-</code></pre>
-<p>Accept the default path for storing the ssh key pair, and set a good password when prompted to protect your ssh key.</p>
-<p>Next, attach the ssh key to your Cloud Identity profile</p>
-<pre><code>gcloud compute os-login ssh-keys add --key-file=${HOME}/.ssh/id_rsa.pub
-</code></pre>
-<p>Once this is done, you can log in to the cluster using ssh from Cloud Shell in your browser</p>
-<pre><code>ssh {ip-address}
-</code></pre>
-<h2 id="next-steps">Next Steps</h2>
-<ul>
-<li><a href="../datastorage/">Migrating Data to the Cloud</a></li>
-<li><a href="">Accessing Software</a></li>
-<li><a href="../jobs/">Submitting Jobs with Slurm</a></li>
-<li><a href="../hardware/">Learn more about available hardware</a></li>
-</ul>
+<h1 id="application-porting-guide">Application Porting Guide</h1>
+<p>Whenever you start using a new system, you will need to spend some time up front to get your applications running. This process is called "porting" and this short guide is meant to help you be successful. </p>
+<p><a class="md-button md-button--primary" href="">Port your software to the cloud in four weeks with a mentored sprint</a></p>
+<h2 id="porting-process">Porting Process</h2>
+<h3 id="containers-or-bare-cloud">Containers or bare-cloud ?</h3>
+<p>All of our RCC solutions come with Apptainer pre-installed. This allows you to run Docker or Apptainer containers on the cluster. Containers provide the advantage that you are in complete control of the environment inside your container; you can choose the operating system, compilers, and additional software packages you would like to have installed.</p>
+<p>On the other hand, the "bare-cloud" approach requires your preferred compilers and software dependencies to be installed on the RCC VM images themselves. This can be done in your home directory space using tools like <a href="https://spack.io">Spack</a>. If you are using Python, you can use <a href="">Conda</a> or <a href="">Python environments</a>. Alternatively, you can work with Fluid Numerics support team to have compilers and additional software installed on your VM images.</p>
+<h3 id="identify-software-requirements">Identify Software Requirements</h3>
+<p>With your approach in mind</p>
 
 
 
@@ -961,7 +816,7 @@ To request a new account, you can reach out to <a href="https://fluidnumerics.at
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -970,20 +825,20 @@ To request a new account, you can reach out to <a href="https://fluidnumerics.at
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              Getting Started
             </div>
           </div>
         </a>
       
       
         
-        <a href="porting-best-practices/" class="md-footer__link md-footer__link--next" aria-label="Next: Porting Guide" rel="next">
+        <a href="../../jobs/" class="md-footer__link md-footer__link--next" aria-label="Next: Running Jobs" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Porting Guide
+              Running Jobs
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1014,10 +869,10 @@ To request a new account, you can reach out to <a href="https://fluidnumerics.at
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.37e9125f.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
     
   </body>

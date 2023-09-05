@@ -10,19 +10,19 @@
         <meta name="author" content="Fluid Numerics">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.3">
     
     
       
-        <title>Check Job Status - Fluid Numerics RCC</title>
+        <title>Deploy Containerized Applications - Fluid Numerics RCC</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7a952b86.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7a952b86.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
         
       
       
@@ -39,7 +39,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slurm-job-history" class="md-skip">
+        <a href="#deploy-singularityapptainer-and-docker-containers" class="md-skip">
           Skip to content
         </a>
       
@@ -82,9 +82,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Fluid Numerics RCC" class="md-header__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
+    <a href="../../.." title="Fluid Numerics RCC" class="md-header__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
       
-  <img src="../../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -100,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Check Job Status
+              Deploy Containerized Applications
             
           </span>
         </div>
@@ -168,9 +168,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Fluid Numerics RCC" class="md-nav__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
+    <a href="../../.." title="Fluid Numerics RCC" class="md-nav__button md-logo" aria-label="Fluid Numerics RCC" data-md-component="logo">
       
-  <img src="../../assets/images/logo.png" alt="logo">
+  <img src="../../../assets/images/logo.png" alt="logo">
 
     </a>
     Fluid Numerics RCC
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -211,23 +211,51 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
       
         <label class="md-nav__link" for="__nav_2">
+          Ogopogo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ogopogo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ogopogo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
           Getting Started
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
           <span class="md-nav__icon md-icon"></span>
           Getting Started
         </label>
@@ -266,11 +294,10 @@
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
     
@@ -280,18 +307,18 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       
       
       
-        <label class="md-nav__link" for="__nav_3">
+        <label class="md-nav__link" for="__nav_2_2">
           Running Jobs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Running Jobs" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+      <nav class="md-nav" aria-label="Running Jobs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           Running Jobs
         </label>
@@ -371,20 +398,6 @@
               
   
   
-  
-    <li class="md-nav__item">
-      <a href="../run_a_singularity_container/" class="md-nav__link">
-        Deploy Containerized Applications
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
     
   
   
@@ -397,12 +410,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Check Job Status
+          Deploy Containerized Applications
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Check Job Status
+        Deploy Containerized Applications
       </a>
       
         
@@ -421,37 +434,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#listing-jobs" class="md-nav__link">
-    Listing jobs
+  <a href="#deploy-a-docker-image" class="md-nav__link">
+    Deploy a Docker Image
   </a>
   
-    <nav class="md-nav" aria-label="Listing jobs">
+    <nav class="md-nav" aria-label="Deploy a Docker Image">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#filter-by-partition" class="md-nav__link">
-    Filter by Partition
+  <a href="#using-docker" class="md-nav__link">
+    Using Docker
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#filter-by-user" class="md-nav__link">
-    Filter by User
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-by-compute-nodes" class="md-nav__link">
-    Filter by Compute Nodes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#show-all-jobs" class="md-nav__link">
-    Show all jobs
+  <a href="#using-apptainer" class="md-nav__link">
+    Using Apptainer
   </a>
   
 </li>
@@ -462,8 +461,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-detailed-job-information" class="md-nav__link">
-    Getting detailed job information
+  <a href="#deploy-a-singularity-image-from-cloud-storage" class="md-nav__link">
+    Deploy a Singularity Image from Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-gpus-with-your-container" class="md-nav__link">
+    Use GPUs with your container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    Further Reading
   </a>
   
 </li>
@@ -477,16 +490,29 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../job_history/" class="md-nav__link">
+        Check Job Status
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -494,18 +520,65 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_4">
+        <label class="md-nav__link" for="__nav_2_3">
+          Software
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Software" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Software
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../software/Ogopogo.md" class="md-nav__link">
+        Ogopogo
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
           Hardware
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Hardware" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+      <nav class="md-nav" aria-label="Hardware" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
           <span class="md-nav__icon md-icon"></span>
           Hardware
         </label>
@@ -544,6 +617,13 @@
     </li>
   
 
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
     
       
       
@@ -556,18 +636,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5">
+        <label class="md-nav__link" for="__nav_3">
           For Admins
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="For Admins" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           For Admins
         </label>
@@ -579,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../admin/Terraform/" class="md-nav__link">
+      <a href="../../../admin/Terraform/" class="md-nav__link">
         Working with Terraform
       </a>
     </li>
@@ -596,18 +676,18 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       
       
       
-        <label class="md-nav__link" for="__nav_5_2">
+        <label class="md-nav__link" for="__nav_3_2">
           Codelabs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" aria-label="Codelabs" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           Codelabs
         </label>
@@ -619,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../codelabs/deploy-test-rcc/" class="md-nav__link">
+      <a href="../../../codelabs/deploy-test-rcc/" class="md-nav__link">
         Deploy and Test Fluid Numerics Research Computing Cloud
       </a>
     </li>
@@ -648,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contact-us/" class="md-nav__link">
+      <a href="../../../contact-us/" class="md-nav__link">
         Contact Support
       </a>
     </li>
@@ -682,37 +762,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#listing-jobs" class="md-nav__link">
-    Listing jobs
+  <a href="#deploy-a-docker-image" class="md-nav__link">
+    Deploy a Docker Image
   </a>
   
-    <nav class="md-nav" aria-label="Listing jobs">
+    <nav class="md-nav" aria-label="Deploy a Docker Image">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#filter-by-partition" class="md-nav__link">
-    Filter by Partition
+  <a href="#using-docker" class="md-nav__link">
+    Using Docker
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#filter-by-user" class="md-nav__link">
-    Filter by User
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter-by-compute-nodes" class="md-nav__link">
-    Filter by Compute Nodes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#show-all-jobs" class="md-nav__link">
-    Show all jobs
+  <a href="#using-apptainer" class="md-nav__link">
+    Using Apptainer
   </a>
   
 </li>
@@ -723,8 +789,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getting-detailed-job-information" class="md-nav__link">
-    Getting detailed job information
+  <a href="#deploy-a-singularity-image-from-cloud-storage" class="md-nav__link">
+    Deploy a Singularity Image from Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-gpus-with-your-container" class="md-nav__link">
+    Use GPUs with your container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    Further Reading
   </a>
   
 </li>
@@ -743,96 +823,106 @@
                 
                   
 
-  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/jobs/job_history.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/fluidnumerics/fluidnumerics-rcc/edit/master/docs/ogopogo/jobs/run_a_singularity_container.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="slurm-job-history">Slurm job history</h1>
-<p>For one reason or another, you may find that you need to obtain detailed information about currently running jobs or jobs that have already completed. This documentation will show you how to use Slurm's command line utilities to obtain such information.</p>
-<h2 id="listing-jobs">Listing jobs</h2>
-<p>To list jobs that are currently running on the cluster, you can use the <code>squeue</code> command. </p>
-<pre><code>squeue
+<h1 id="deploy-singularityapptainer-and-docker-containers">Deploy Singularity(Apptainer) and Docker Containers</h1>
+<p>Containers are becoming a popular tool in research computing to enhance application portability and research reproducibility. <a href="https://apptainer.org/">Apptainer</a> (formerly Singularity) is an open-source secure container platform intended for high performance computing and research computing.</p>
+<p>The Research Computing Cluster (RCC) comes with Singularity pre-installed and can be used to run Docker and Singularity containers. We encourage you to use <a href="https://cloud.google.com/build">Google Cloud Build</a> to support continuous integration and containerization of your application, <a href="https://cloud.google.com/container-registry">Google Container Registry</a> to host a private Docker registry, and <a href="https://cloud.google.com/storage">Google Cloud Storage</a> to host Singularity images. However, you can still follow this guide if your images are hosted elsewhere.</p>
+<p>This documentation will walk through how to deploy containers on the RCC.</p>
+<h2 id="deploy-a-docker-image">Deploy a Docker Image</h2>
+<h3 id="using-docker">Using Docker</h3>
+<p>Docker images can be added to your local docker image registry on the RCC by simply running</p>
+<pre><code>docker pull IMAGE
 </code></pre>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can convert the output of <code>squeue</code> to YAML format, by simply adding the <code>--yaml</code> flag</p>
-</div>
-<p>By default this will show jobs listed for all users on the cluster and with the following information</p>
+<p>You can run commands within docker images using <code>docker run</code>.</p>
+<h3 id="using-apptainer">Using Apptainer</h3>
+<p>Apptainer can be used to deploy a Docker image from a public or private registry. This is usually done by converting a Docker image to a Singularity image using <code>singularity pull</code> and running with <code>singularity exec</code>. When using a private registry, it is easiest to use <a href="https://cloud.google.com/container-registry">Google Container Registry</a>.</p>
+<p>For other private registries, see <a href="https://singularity.hpcng.org/user-docs/master/singularity_and_docker.html#making-use-of-private-images-from-docker-hub">Making use of private images</a>.</p>
+<p>To convert a Docker image to a Singularity image, use <code>apptainer pull</code>.</p>
+<pre><code>apptainer pull docker://docker-image ${HOME}/IMAGE-NAME.sif 
+</code></pre>
+<p>After you've converted your Docker image to a Singularity image, you can deploy a Singularity container using <code>apptainer exec</code>.</p>
+<pre><code>apptainer exec ${HOME}/IMAGE-NAME.sif COMMAND
+</code></pre>
+<p>Any <code>COMMAND</code> specified at the end of the <code>apptainer exec</code> call will be run from within the Singularity container.</p>
+<p>By default, the Singularity container will mount a number of directories, including <code>/home</code> and <code>/tmp</code>. This allows you to have read/write access to your home directory from within the container. If you need to mount any other directories, you can use the <code>--bind</code> flag.</p>
+<pre><code>apptainer exec --bind /path/to/host/directory:/path/to/container/mount ${HOME}/IMAGE-NAME.sif COMMAND
+</code></pre>
+<p>The <code>--bind</code> flag expects to be given two arguments, separated by a colon <code>:</code>. The first argument is the path on the cluster that you want to mount to the container and the second argument is the path to mount this directory to within the container. For more information on this topic, see <a href="https://apptainer.hpcng.org/user-docs/master/bind_paths_and_mounts.html">Bind Paths and Mounts in the Singularity documentation</a>.</p>
+<p>For more information on using Singularity to work with Docker images, see <a href="https://apptainer.hpcng.org/user-docs/master/apptainer_and_docker.html">Support for Docker and OCI Singularity documentation</a>.</p>
+<h2 id="deploy-a-singularity-image-from-cloud-storage">Deploy a Singularity Image from Cloud Storage</h2>
+<p>When building Singularity images with Google Cloud build, the Singularity image files are treated as artifacts, which are posted to Google Cloud Storage. You can read more about build artifacts on the <a href="https://cloud.google.com/build/docs/building/store-build-artifacts">Google Cloud Build Artifacts documentation</a> and how to create Singularity images with Google Cloud Build from <a href="https://cloud.google.com/community/tutorials/apptainer-containers-with-cloud-build">this community tutorial</a>.</p>
+<p>The directions given below assume that you are logged in to your cluster's login node and that you have your Singularity image hosted in Google Cloud Storage. </p>
+<p>To copy your Singularity image to the cluster, you can use the <code>gsutil</code> command.</p>
+<pre><code>gsutil cp gs://YOUR-GCS-BUCKET/PATH/TO/IMAGE-NAME.sif ${HOME}/IMAGE-NAME.sif 
+</code></pre>
+<p>After you've copied your Singularity image onto the cluster, you can deploy a Singularity container using <code>apptainer exec</code>.</p>
+<pre><code>apptainer exec ${HOME}/IMAGE-NAME.sif
+</code></pre>
+<p>By default, the Singularity container will mount a number of directories, including <code>/home</code> and <code>/tmp</code>. This allows you to have read/write access to your home directory from within the container. If you need to mount any other directories, you can use the <code>--bind</code> flag.</p>
+<pre><code>apptainer exec --bind /path/to/host/directory:/path/to/container/mount ${HOME}/IMAGE-NAME.sif
+</code></pre>
+<p>The <code>--bind</code> flag expects to be given two arguments, separated by a colon <code>:</code>. The first argument is the path on the cluster that you want to mount to the container and the second argument is the path to mount this directory to within the container. For more information on this topic, see <a href="https://apptainer.hpcng.org/user-docs/master/bind_paths_and_mounts.html">Bind Paths and Mounts in the Singularity documentation</a>.</p>
+<h2 id="use-gpus-with-your-container">Use GPUs with your container</h2>
+<p>Singularity supports deploying containers that use Nvidia's CUDA or AMD's ROCm solutions. Currently, on Google Cloud, and by extension the RCC, only Nvidia GPU's are available.</p>
+<p>You can easily expose a GPU and the host system's drivers to the container using the <code>--nv</code> flag.</p>
+<p>The example below shows how to deploy a Singularity container image with GPU support.</p>
+<pre><code>apptainer --nv exec --bind /path/to/host/directory:/path/to/container/mount ${HOME}/IMAGE-NAME.sif
+</code></pre>
+<p>Alternatively, you can deploy a Docker container with GPU support using</p>
+<pre><code>docker run -it --gpus all IMAGE [COMMAND]
+</code></pre>
+<p>In order to use the <code>--nv</code> flag (apptainer) or the <code>--gpus</code> flag (docker), you need to make sure the following conditions are met</p>
 <ul>
-<li><code>JOBID</code> - The ID assigned to the job by the Slurm workload manager / job scheduler</li>
-<li><code>PARTITION</code> - The compute partition the job was submitted to</li>
-<li><code>NAME</code> - The name assigned to the job by the user who submitted the job; If a job name was not provided, batch jobs will default to the name of the script.</li>
-<li><code>USER</code> - The POSIX username for the user who submitted the job</li>
-<li><code>ST</code> - The job status</li>
-<li><code>TIME</code> - The amount of time that has elapsed in the current status</li>
-<li><code>NODES</code> - The compute nodes (VMs) assigned to the job</li>
-<li><code>NODELIST(REASON)</code> - Any reason for the current status. This is usually empty, unless a job failed to start or was interrupted due to preemption or other node failure.</li>
+<li>Your application is built in your container using a CUDA version that matches the RCC's CUDA version ( 11.8.0 )</li>
+<li>Your application is built in your container to target a GPU with the appropriate device capability.</li>
 </ul>
-<p>Slurm jobs have a status code (the <code>ST</code> column) associated with them which change during the lifespan of the job</p>
+<p>The latter requirement is met by using the appropriate compiler flag with <code>nvcc</code> or <code>GPU_TARGET</code> environment variable with <code>hipcc</code> or <code>hipfc</code>.</p>
+<p>When building applications with <code>nvcc</code>, use the <code>-arch=sm_XX</code> flag (replacing <code>XX</code> with the appropriate device capability). A table of the GPU models and corresponding device capabilities is given below.</p>
+<table>
+<thead>
+<tr>
+<th>GPU Model</th>
+<th>Device Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nvidia Tesla K80 (Kepler)</td>
+<td>sm_30, sm_35, sm_37</td>
+</tr>
+<tr>
+<td>Nvidia Tesla P100 (Pascal)</td>
+<td>sm_60, sm_61, sm_62</td>
+</tr>
+<tr>
+<td>Nvidia Tesla P4 (Pascal)</td>
+<td>sm_60, sm_61, sm_62</td>
+</tr>
+<tr>
+<td>Nvidia Tesla T4 (Turing)</td>
+<td>sm_75</td>
+</tr>
+<tr>
+<td>Nvidia Tesla V100 (Volta)</td>
+<td>sm_70, sm_72</td>
+</tr>
+<tr>
+<td>Nvidia Tesla A100 (Ampere)</td>
+<td>sm_80, sm_86</td>
+</tr>
+</tbody>
+</table>
+<h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><code>CF</code> - The job is in a configuring state. Typically this state is seen when autoscaling compute nodes are being provisioned to execute work.</li>
-<li><code>PD</code> - The job is in a pending state. </li>
-<li><code>R</code> - The job is in a running state.</li>
-<li><code>CG</code> - The job is in a completing state and the associated compute resources are being cleaned up.</li>
-<li><code>(Resources)</code> - There are insufficient resources available to schedule your job at the moment. </li>
+<li><a href="https://singularity.hpcng.org/user-docs/master/">Singularity Documentation</a></li>
+<li><a href="https://singularity.hpcng.org/user-docs/master/gpu.html">Using GPUs with Singularity Containers</a></li>
+<li><a href="https://singularity.hpcng.org/user-docs/master/mpi.html">Using MPI with Singularity Containers</a></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If your job is in a pending state, you can see when it is scheduled to run with <code>squeue --start</code></p>
-</div>
-<p>You can filter the results of <code>squeue</code> by the partition, user, job state, compute nodes, and more; examples are given below</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can see a full list of <code>squeue</code> filter options by running <code>squeue --help</code></p>
-</div>
-<h3 id="filter-by-partition">Filter by Partition</h3>
-<p>To list jobs that are running on a specific partition, you can use, the <code>--partition</code> flag.</p>
-<pre><code>squeue --partition=a1g80
-</code></pre>
-<p>The above example will show all jobs running in the <code>a1g80</code> partition. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you need to find a list of partitions, you can run the <code>sinfo</code> command</p>
-</div>
-<h3 id="filter-by-user">Filter by User</h3>
-<p>To list jobs that only you are currently running, you can filter by user and use the output of <code>whoami</code> to automatically populate the <code>--user</code> flag with your username</p>
-<pre><code>squeue --user=$(whoami)
-</code></pre>
-<h3 id="filter-by-compute-nodes">Filter by Compute Nodes</h3>
-<p>To list jobs on a specific set of compute nodes, you can use the <code>--nodelist</code> flag.</p>
-<pre><code>squeue --nodelist=rcc-a1g80-sm-[0-10],rcc-a1g80p-sm-[0-10]
-</code></pre>
-<p>The example above will only show jobs running on the nodes <code>rcc-a1g80-sm-[0-10]</code> and <code>rcc-a1g80p-sm-[0-10]</code>. </p>
-<h3 id="show-all-jobs">Show all jobs</h3>
-<p>By default, <code>squeue</code> will only show jobs in pending and running states. To show all jobs, including those that have already completed, you can add the <code>--states=all</code> flag, e.g.</p>
-<pre><code>squeue --user=$(whoami) --partition=a1g80 --states=all
-</code></pre>
-<p>This example will show all jobs you have run and are currently running in the <code>a1g80</code> partition.</p>
-<h2 id="getting-detailed-job-information">Getting detailed job information</h2>
-<p>Slurm's database also keeps record of detailed information about jobs including time elapsed, max memory used, and exit codes. You can easily access this information using Slurms <code>sacct</code> command line interface</p>
-<pre><code>sacct
-</code></pre>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can convert the output of <code>sacct</code> to YAML format, by simply adding the <code>--yaml</code> flag
-You can convert the output of <code>sacct</code> to JSON format, by simply adding the <code>--json</code> flag</p>
-</div>
-<p>By default, <code>sacct</code> will return only your jobs for the current day and includes the following information</p>
-<ul>
-<li><code>JobID</code> - The ID assigned to the job by the Slurm workload manager / job scheduler</li>
-<li><code>JobName</code> - The name assigned to the job by the user who submitted the job; If a job name was not provided, batch jobs will default to the name of the script.</li>
-<li><code>Partition</code> - The Slurm partition the job was submitted to</li>
-<li><code>Account</code> - The Slurm account (if applicable) used to run the job</li>
-<li><code>AllocCPUS</code> - The number of CPUs allocated to the job</li>
-<li><code>State</code> - Current state of the job (similar to <code>squeue</code> output)</li>
-<li><code>ExitCode</code> - Exit code of the job / batch script.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can obtain even more information from <code>sacct</code> by using the <code>--long</code> flag. See <code>sacct --help</code> for more details </p>
-</div>
 
 
 
@@ -853,7 +943,7 @@ You can convert the output of <code>sacct</code> to JSON format, by simply addin
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../run_a_singularity_container/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deploy Containerized Applications" rel="prev">
+        <a href="../gpu_applications/" class="md-footer__link md-footer__link--prev" aria-label="Previous: GPU Accelerated Applications" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -862,20 +952,20 @@ You can convert the output of <code>sacct</code> to JSON format, by simply addin
               <span class="md-footer__direction">
                 Previous
               </span>
-              Deploy Containerized Applications
+              GPU Accelerated Applications
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../hardware/" class="md-footer__link md-footer__link--next" aria-label="Next: Infrastructure Overview" rel="next">
+        <a href="../job_history/" class="md-footer__link md-footer__link--next" aria-label="Next: Check Job Status" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Infrastructure Overview
+              Check Job Status
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -906,10 +996,10 @@ You can convert the output of <code>sacct</code> to JSON format, by simply addin
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.37e9125f.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.37e9125f.min.js"></script>
       
     
   </body>
