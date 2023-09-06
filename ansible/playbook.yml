@@ -14,3 +14,6 @@
 
     - name: Install Spack, Compilers, and MPI
       ansible.builtin.script: scripts/spack.sh
+
+    - name: Install RadioAstronomy tools
+      ansible.builtin.script: scripts/radio-astronomy.sh

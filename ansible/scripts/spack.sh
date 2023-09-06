@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Prerequisites
-INSTALL_ROOT="/opt"
+INSTALL_ROOT="/opt/apps"
 SPACK_VERSION="v0.19.1"
 SYSTEM_COMPILER="gcc@4.8.5"
-COMPILERS=("gcc@9.5.0", "gcc@11.3.0" "intel-oneapi-compilers@2022.2.1")
+COMPILERS=("gcc@9.5.0" "gcc@11.3.0" "gcc@12.1.0" "intel-oneapi-compilers@2022.2.1")
 MPI="openmpi@4.1.2"
 
 # Install prerequisites
@@ -78,5 +78,11 @@ do
   fi
 done
 
-# Additional packages
-spack install apptainer
+# Set up module files
+spack module lmod refresh --delete-tree -y
+cat > /etc/profile.d/z12_lmod.sh << EOL
+#!/bin/bash
+
+module unuse /opt/apps/modulefiles
+module use /opt/apps/spack/share/spack/lmod/linux-centos7-x86_64/Core/
+EOL
