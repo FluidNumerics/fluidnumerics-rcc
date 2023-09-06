@@ -22,7 +22,7 @@ Below is a simple example batch file:
 #SBATCH --time=00:05:00
 #SBATCH --output=stdout.log
 #SBATCH --error=stderr.log
-#SBATCH --constraints=gpu*8
+#SBATCH --constraints=ondemand
 
 hostname
 ```
@@ -36,7 +36,7 @@ The above batch file has multiple constraints that dictate how the job will be e
 * `--ntasks-per-node=1` When used by itself, this constraint requests that 1 task per node be invoked. When used with --ntasks, --ntasks-per-node is treated as the maximum count of tasks per node. 
 * `--gres=gpu:8` indicates that 8 GPUs per node are requested to execute this batch job 
 * `--time=00:05:00` sets a total run time of 5 minutes for job allocation. 
-* `--constraints=preemptible` sets the list of node features to use when selecting compute nodes. See the Features list below
+* `--constraints=ondemand` sets the list of node features to use when selecting compute nodes. See the Features list below
 * `--output=stdout.log` out creates a file containing the batch script’s stdout.
 * `--error=stderr.log` out creates a file containing the batch script’s stderr.
 
@@ -65,7 +65,6 @@ Slurm's `sbatch` command accepts flags for redirecting standard out and standard
 
 ```
 #!/bin/bash
-#SBATCH --account=my-slurm-account
 #SBATCH --partition=this-partition
 #SBATCH --job-name=example_job_name
 #SBATCH --ntasks=1

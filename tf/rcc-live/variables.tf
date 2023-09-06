@@ -140,23 +140,23 @@ variable "cloud_parameters" {
   }
 }
 
-variable "cloudsql" {
-  description = <<EOD
-Use this database instead of the one on the controller.
-* server_ip : Address of the database server.
-* user      : The user to access the database as.
-* password  : The password, given the user, to access the given database. (sensitive)
-* db_name   : The database to access.
-EOD
-  type = object({
-    server_ip = string
-    user      = string
-    password  = string # sensitive
-    db_name   = string
-  })
-  default   = null
-  sensitive = true
-}
+# variable "cloudsql" {
+#   description = <<EOD
+# Use this database instead of the one on the controller.
+# * server_ip : Address of the database server.
+# * user      : The user to access the database as.
+# * password  : The password, given the user, to access the given database. (sensitive)
+# * db_name   : The database to access.
+# EOD
+#   type = object({
+#     server_ip = string
+#     user      = string
+#     password  = string # sensitive
+#     db_name   = string
+#   })
+#   default   = null
+#   sensitive = true
+# }
 
 variable "disable_default_mounts" {
   description = <<-EOD
@@ -597,7 +597,7 @@ variable "lustre" {
   })
   default = {
     local_mount = "/mnt/lustre"
-    image = "projects/midjourney-tpu/global/images/lustre-gcp-latest"
+    image = "projects/fluidnumerics-rcc/global/images/lustre-gcp-latest"
     service_account = null
     network_tags = []
     name = "rcc-lustre"
@@ -632,4 +632,32 @@ variable "source_image" {
 variable "source_image_project" {
   type = string
   description = "Name of the project hosting the image for this cluster"
+}
+
+######################
+# CloudSQL - SlurmDB #
+######################
+
+variable "cloudsql_enable_ipv4" {
+  type = bool
+  description = "Flag to enable external access to the cloudsql instance"
+  default = false
+}
+
+variable "cloudsql_slurmdb" {
+  type = bool
+  description = "Boolean flag to enable (True) or disable (False) CloudSQL Slurm Database"
+  default = false
+}
+
+variable "cloudsql_name" {
+  type = string
+  description = "Name of the cloudsql instance used to host the Slurm database, if cloudsql_slurmdb is set to true"
+  default = "slurmdb"
+}
+
+variable "cloudsql_tier" {
+  type = string
+  description = "Instance type of the CloudSQL instance. See https://cloud.google.com/sql/docs/mysql/instance-settings for more options."
+  default = "db-n1-standard-8"
 }

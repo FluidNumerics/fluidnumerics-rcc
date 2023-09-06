@@ -1,6 +1,6 @@
 project_id = "fluidnumerics-rcc"
 source_image_project = "fluidnumerics-rcc"
-source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-1687541602"
+source_image = "fluidnumerics-v5-slurm-22-05-4-centos-7-devimage"
 
 region = "us-central1"
 subnets = [
@@ -14,9 +14,15 @@ subnets = [
 # Slurm configuration #
 #######################
 
-slurm_cluster_name = "rcclive"
+slurm_cluster_name = "rcc"
+enable_reconfigure = true
 
-slurm_conf_tpl    = "../etc/slurm.conf.tpl"
+cloudsql_slurmdb   = true # enable cloudsql for slurm database
+cloudsql_enable_ipv4 = false
+cloudsql_name = "rcc"
+cloudsql_tier = "db-n1-standard-4"
+
+slurm_conf_tpl     = "../etc/slurm.conf.tpl"
 
 controller_instance_config = {
   additional_disks = []
@@ -26,14 +32,14 @@ controller_instance_config = {
   disable_smt      = false
   disk_auto_delete = true
   disk_labels = {}
-  disk_size_gb           = 2048
-  disk_type              = "pd-ssd"
+  disk_size_gb           = 750
+  disk_type              = "pd-standard"
   enable_confidential_vm = false
   enable_oslogin         = true
   enable_shielded_vm     = false
   gpu                    = null
   labels = {}
-  machine_type = "n1-standard-4"
+  machine_type = "n1-standard-8"
   metadata = {}
   min_cpu_platform    = null
   on_host_maintenance = null
@@ -130,8 +136,8 @@ partitions = [
           disable_smt              = false
           disk_auto_delete         = true
           disk_labels              = {}
-          disk_size_gb             = 50
-          disk_type                = "pd-ssd"
+          disk_size_gb             = 100
+          disk_type                = "pd-standard"
           enable_confidential_vm   = false
           enable_oslogin           = true
           enable_shielded_vm       = false
@@ -141,7 +147,7 @@ partitions = [
           metadata                 = {}
           min_cpu_platform         = null
           on_host_maintenance      = null
-          preemptible              = true
+          preemptible              = false
           shielded_instance_config = null
           source_image_family  = null
           source_image_project = null
@@ -170,7 +176,7 @@ partitions = [
       }
       partition_startup_scripts = []
       partition_startup_scripts_timeout = 300
-      partition_name = "gvx1"
+      partition_name = "v100"
       partition_nodes = [
         {
           access_config = []
@@ -178,14 +184,14 @@ partitions = [
           node_count_dynamic_max = 10
           node_count_static      = 0
           node_conf = {
-            Features = "test"
+            Features = "ondemand"
           }
           additional_disks         = []
           can_ip_forward           = true
           disable_smt              = false
           disk_auto_delete         = true
           disk_labels              = {}
-          disk_size_gb             = 50
+          disk_size_gb             = 250
           disk_type                = "pd-ssd"
           enable_confidential_vm   = false
           enable_oslogin           = true
@@ -199,7 +205,7 @@ partitions = [
           metadata                 = {}
           min_cpu_platform         = null
           on_host_maintenance      = null
-          preemptible              = true
+          preemptible              = false
           shielded_instance_config = null
           source_image_family  = null
           source_image_project = null
@@ -214,36 +220,20 @@ partitions = [
             termination_action = "STOP"
           }
         },
-      ]
-      region            = null
-      zone_policy_allow = []
-      zone_policy_deny  = []
-    },
-    {
-      enable_job_exclusive    = false
-      enable_placement_groups = false
-      network_storage         = []
-      partition_conf = {
-        SuspendTime = 300
-      }
-      partition_startup_scripts = []
-      partition_startup_scripts_timeout = 300
-      partition_name = "gvx8"
-      partition_nodes = [
         {
           access_config = []
-          group_name             = "sm"
+          group_name             = "lrg"
           node_count_dynamic_max = 5
           node_count_static      = 0
           node_conf = {
-            Features = "test"
+            Features = "ondemand"
           }
           additional_disks         = []
           can_ip_forward           = true
           disable_smt              = false
           disk_auto_delete         = true
           disk_labels              = {}
-          disk_size_gb             = 50
+          disk_size_gb             = 250
           disk_type                = "pd-ssd"
           enable_confidential_vm   = false
           enable_oslogin           = true
@@ -257,7 +247,7 @@ partitions = [
           metadata                 = {}
           min_cpu_platform         = null
           on_host_maintenance      = null
-          preemptible              = true
+          preemptible              = false
           shielded_instance_config = null
           source_image_family  = null
           source_image_project = null
@@ -271,12 +261,14 @@ partitions = [
           spot_instance_config = {
             termination_action = "STOP"
           }
-        },
+        }
       ]
       region            = null
       zone_policy_allow = []
       zone_policy_deny  = []
     },
+
+
     {
       enable_job_exclusive    = false
       enable_placement_groups = false
@@ -286,7 +278,7 @@ partitions = [
       }
       partition_startup_scripts = []
       partition_startup_scripts_timeout = 300
-      partition_name = "gax1"
+      partition_name = "a100"
       partition_nodes = [
         {
           access_config = []
@@ -294,14 +286,14 @@ partitions = [
           node_count_dynamic_max = 10
           node_count_static      = 0
           node_conf = {
-            Features = "test"
+            Features = "ondemand"
           }
           additional_disks         = []
           can_ip_forward           = true
           disable_smt              = false
           disk_auto_delete         = true
           disk_labels              = {}
-          disk_size_gb             = 50
+          disk_size_gb             = 250
           disk_type                = "pd-ssd"
           enable_confidential_vm   = false
           enable_oslogin           = true
@@ -315,7 +307,7 @@ partitions = [
           metadata                 = {}
           min_cpu_platform         = null
           on_host_maintenance      = null
-          preemptible              = true
+          preemptible              = false
           shielded_instance_config = null
           source_image_family  = null
           source_image_project = null
@@ -330,42 +322,26 @@ partitions = [
             termination_action = "STOP"
           }
         },
-      ]
-      region            = null
-      zone_policy_allow = []
-      zone_policy_deny  = []
-    },
-    {
-      enable_job_exclusive    = false
-      enable_placement_groups = false
-      network_storage         = []
-      partition_conf = {
-        SuspendTime = 300
-      }
-      partition_startup_scripts = []
-      partition_startup_scripts_timeout = 300
-      partition_name = "gax8"
-      partition_nodes = [
         {
           access_config = []
-          group_name             = "sm"
+          group_name             = "lrg"
           node_count_dynamic_max = 5
           node_count_static      = 0
           node_conf = {
-            Features = "test"
+            Features = "ondemand"
           }
           additional_disks         = []
           can_ip_forward           = true
           disable_smt              = false
           disk_auto_delete         = true
           disk_labels              = {}
-          disk_size_gb             = 50
+          disk_size_gb             = 250
           disk_type                = "pd-ssd"
           enable_confidential_vm   = false
           enable_oslogin           = true
           enable_shielded_vm       = false
           gpu                      = {
-            count = 1,
+            count = 8,
             type = "nvidia-tesla-a100"
           }
           labels                   = {}
@@ -373,7 +349,7 @@ partitions = [
           metadata                 = {}
           min_cpu_platform         = null
           on_host_maintenance      = null
-          preemptible              = true
+          preemptible              = false
           shielded_instance_config = null
           source_image_family  = null
           source_image_project = null

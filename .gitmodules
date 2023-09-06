@@ -1,4 +1,4 @@
 [submodule "slurm-gcp"]
 	path = slurm-gcp
-	url = git@github.com:FluidNumerics/slurm-gcp.git
+	url = https://github.com/FluidNumerics/slurm-gcp.git
 	branch = feature_wekafs

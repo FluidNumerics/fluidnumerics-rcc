@@ -595,7 +595,7 @@ variable "lustre" {
   })
   default = {
     local_mount = "/mnt/lustre"
-    image = "projects/midjourney-tpu/global/images/lustre-gcp-latest"
+    image = "projects/fluidnumerics-rcc/global/images/lustre-gcp-latest"
     service_account = null
     network_tags = []
     name = "rcc-lustre"

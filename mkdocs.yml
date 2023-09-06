@@ -13,20 +13,23 @@ docs_dir: docs
 # Site navigation 
 nav:
   - Home: README.md
-  - Getting Started:
-    - Getting Started: start/README.md
-    - Porting Guide: start/porting-best-practices.md
-  - Running Jobs: 
-    - Running Jobs: jobs/README.md
-    - Interactive Jobs: jobs/interactive_jobs.md
-    - Batch Jobs: jobs/batch_jobs.md
-    - Environment variables: jobs/env.md
-    - GPU Accelerated Applications: jobs/gpu_applications.md
-    - Deploy Containerized Applications: jobs/run_a_singularity_container.md
-    - Check Job Status: jobs/job_history.md 
-  - Hardware:
-    - Infrastructure Overview: hardware/README.md
-    - Ogopogo: hardware/Ogopogo.md
+  - Ogopogo:
+    - Getting Started:
+      - Getting Started: ogopogo/start/README.md
+      - Porting Guide: ogopogo/start/porting-best-practices.md
+    - Running Jobs: 
+      - Running Jobs: ogopogo/jobs/README.md
+      - Interactive Jobs: ogopogo/jobs/interactive_jobs.md
+      - Batch Jobs: ogopogo/jobs/batch_jobs.md
+      - Environment variables: ogopogo/jobs/env.md
+      - GPU Accelerated Applications: ogopogo/jobs/gpu_applications.md
+      - Deploy Containerized Applications: ogopogo/jobs/run_a_singularity_container.md
+      - Check Job Status: ogopogo/jobs/job_history.md 
+    - Software:
+      - Ogopogo: software/Ogopogo.md
+    - Hardware:
+      - Infrastructure Overview: ogopogo/hardware/README.md
+      - Ogopogo: ogopogo/hardware/Ogopogo.md
   - For Admins:
     - Working with Terraform: admin/Terraform.md
     - Codelabs:

@@ -338,6 +338,60 @@ module "lustre" {
 }
 
 
+#######################
+# CloudSQL - SlurmDB  #
+#######################
+resource "google_compute_global_address" "private_ip_address" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  name = "${var.slurm_cluster_name}-private-ip-address"
+  purpose = "VPC_PEERING"
+  address_type = "INTERNAL"
+  prefix_length = 16
+  network = module.slurm_network.network.network_name # TO DO
+  project = var.project_id
+}
+
+resource "google_service_networking_connection" "private_vpc_connection" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  network = module.slurm_network.network.network_name
+  service = "servicenetworking.googleapis.com"
+  reserved_peering_ranges = [google_compute_global_address.private_ip_address[0].name]
+}
+
+resource "google_sql_database_instance" "slurm_db" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  name = var.cloudsql_name
+  database_version = "MYSQL_5_6"
+  region = var.region
+  project = var.project_id
+  depends_on = [google_service_networking_connection.private_vpc_connection[0]]
+
+  settings {
+    tier = var.cloudsql_tier
+    ip_configuration {
+      ipv4_enabled  = var.cloudsql_enable_ipv4
+      private_network = module.slurm_network.network.network_self_link
+    }
+  }
+  deletion_protection = false
+}
+
+resource "google_sql_user" "slurm" {
+  count = var.cloudsql_slurmdb ? 1 : 0
+  name = "slurm"
+  instance = google_sql_database_instance.slurm_db[0].name
+  password = "changeme"
+}
+
+locals {
+  cloudsql = var.cloudsql_slurmdb ? {"db_name":google_sql_database_instance.slurm_db[0].name, 
+                                     "server_ip":google_sql_database_instance.slurm_db[0].private_ip_address,
+                                     "user": "slurm",
+                                     "password": "changeme"} : null
+}
+// ***************************************** //
+
+
 #################
 # SLURM CLUSTER #
 #################
@@ -348,7 +402,7 @@ module "slurm_cluster" {
 
   cgroup_conf_tpl            = var.cgroup_conf_tpl
   cloud_parameters           = local.cloud_parameters
-  cloudsql                   = var.cloudsql
+  cloudsql                   = local.cloudsql
   slurm_cluster_name         = var.slurm_cluster_name
   compute_startup_scripts    = var.compute_startup_scripts
   controller_instance_config = local.controller_instance_config[0]
